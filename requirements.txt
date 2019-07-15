@@ -1,2 +1,5 @@
-Django==2.2.3
+Django
 pytz==2018.5
+django-jenkins
+pep8
+pyflakes

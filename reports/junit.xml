@@ -1,0 +1,1 @@
+<testsuite errors="0" failures="0" name="Django Project Tests" skips="0" tests="1" time="0.011"><testcase classname="crud.tests.BookTestCase" name="test_crear_nuevo_libro" time="0.010606" /></testsuite>
