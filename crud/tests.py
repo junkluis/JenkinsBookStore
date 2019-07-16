@@ -27,7 +27,7 @@ class BookTestCase(TestCase):
     def test_editar_libro(self):
         book = BookList.objects.get(price = 90)
         book.title = "Snake"
-        book.save(update.Fields = ["title"])
+        book.save(update_Fields = ["title"])
         self.assertEqual("Snake", book.title)
     #pass
 
