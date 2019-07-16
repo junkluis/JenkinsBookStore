@@ -51,7 +51,7 @@ class BookTestCase(TestCase):
                                 author=info_libro[2])
         mensaje = buscarLibrosPorAutor("Jonathan Parrales")
         libro = BookList.objects.filter(author="Jonathan Parrales")
-        self.assertEqual(('Se encontraron 1 resultados', libro), mensaje)
+        self.assertEqual(tuple('Se encontraron 1 resultados', libro), tuple(mensaje))
     
     def test_buscar_libro_fallido(self):
         info_libro = ["Mil Horas 3", 40, "Jonathan Parrales"]
@@ -60,7 +60,7 @@ class BookTestCase(TestCase):
                                 author=info_libro[2])
         libro = BookList.objects.filter(author="Jonathan Neira")
         mensaje = buscarLibrosPorAutor("Jonathan Neira")
-        self.assertEqual(('No se encontraron resultados', libro), mensaje)
+        self.assertEqual(tuple('No se encontraron resultados', libro), tuple(mensaje))
 
     def test_calcular_subtotal_carrito(self):
         info_libro = ["Mil Horas 4", 40, "Jonathan Parrales"]
@@ -72,7 +72,7 @@ class BookTestCase(TestCase):
         for x in libros:
             suma += x.price
         preciosTotal = calcularSubTotalCarrito(BookList.objects.all())
-        self.assertTruple(("El subtotal es: $"+str(suma), suma), preciosTotal)
+        self.assertEquals(tuple("El subtotal es: $"+str(suma), suma), tuple(preciosTotal))
 
 
 class ViewsTestCase(TestCase):
