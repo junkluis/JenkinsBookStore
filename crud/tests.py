@@ -103,6 +103,35 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito(self):
         carrito = []
         libros = BookList.objects.all()
-        msj = agregarLibroAlCarrito(libros[0], carrito)
+        msj = agregar_libro_al_carrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
+
+    def test_agregar_carrito_max(self):
+        carrito = [0] * 10
+        libros = BookList.objects.all()
+        msj = agregar_libro_al_carrito(libros[0], carrito)
+        msj_esperado = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
+        self.assertEqual(msj_esperado, msj)
+
+    def test_agregar_carrito_err(self):
+        carrito = []
+        msj = agregar_libro_al_carrito('Un libro', carrito)
+        msj_esperado = 'Err: No hay ningun libro'
+        self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_subtotal_carrito_valido(self):
+        carrito = BookList.objects.all()
+        msj,subtotal = calcular_subtotal_carrito(carrito)
+        msj_esperado = 'El subtotal es: $210'
+        subtotal_esperado = 210
+        self.assertEqual(msj_esperado, msj)
+        self.assertEqual(subtotal_esperado, subtotal)
+
+    def test_calcular_subtotal_carrito_vacio(self):
+        carrito = 0
+        (msj,subtotal) = calcular_subtotal_carrito(carrito)
+        msj_esperado = 'No tiene libros en el carrito.'
+        subtotal_esperado = 0
+        self.assertEqual(msj_esperado, msj)
+        self.assertEqual(subtotal_esperado, subtotal)

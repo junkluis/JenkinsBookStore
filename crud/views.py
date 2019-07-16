@@ -49,7 +49,7 @@ def update(request, id):
     return redirect('/')
 
 
-def agregarLibroAlCarrito(libro, carrito):
+def agregar_libro_al_carrito(libro, carrito):
     msj = ''
 
     if(isinstance(libro, BookList)):
@@ -64,14 +64,14 @@ def agregarLibroAlCarrito(libro, carrito):
     return msj
 
 
-def calcularSubTotalCarrito(carrito):
+def calcular_subtotal_carrito(carrito):
     msj = ""
     subtotal = 0
 
     if(carrito != 0):
         for libro in carrito:
             subtotal += libro.price
-        msj = 'El subtotal es: $'.str(subtotal)
+        msj = 'El subtotal es: $'+str(subtotal)
     else:
         msj = 'No tiene libros en el carrito.'
         subtotal = 0
@@ -79,7 +79,7 @@ def calcularSubTotalCarrito(carrito):
     return (msj, subtotal)
 
 
-def buscarLibrosPorAutor(nombre_autor):
+def buscar_libros_por_autor(nombre_autor):
     msj = ""
     todosLosLibros = BookList.objects.filter(author=nombre_autor)
 
