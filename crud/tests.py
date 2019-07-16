@@ -80,7 +80,7 @@ class ViewsTestCase(TestCase):
 
     def test_edit_view(self):
         response = self.client.get(reverse("edit", args=(1, )))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
 
 
 class FunctionsTestCase(TestCase):
