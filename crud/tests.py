@@ -24,14 +24,14 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-     def test_editar_libro(self):
-         book = BookList.objects.get(price = 90)
-         book.title = "Snake"
-         book.save(update.Fields = ["title"])
-         self.assertEqual("Snake", book.title)
-    #   pass
+    def test_editar_libro(self):
+        book = BookList.objects.get(price = 90)
+        book.title = "Snake"
+        book.save(update.Fields = ["title"])
+        self.assertEqual("Snake", book.title)
+    #pass
 
-     def test_eliminar_libro(self):
+    def test_eliminar_libro(self):
         book = BookList.objects.get(price = 90)
         book.delete()
         new book = BookList.objects.filter(price = 90)
