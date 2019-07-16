@@ -58,17 +58,17 @@ class ViewsTestCase(TestCase):
     #   pass
 
     def test_delete_view(self):
-        response = self.client.get(reverse('/delete/1'))
+        response = self.client.get("/delete/1")
         self.assertEqual(response.status_code, 301)
     #   pass
 
     def test_edit_view(self):
-        response = self.client.get(reverse('/edit/1'))
+        response = self.client.get("/edit/1")
         self.assertEqual(response.status_code, 301)
     #   pass
 
     def test_update_view(self):
-        response = self.client.get(reverse('/update/1'))
+        response = self.client.get("/update/1")
         self.assertEqual(response.status_code, 301)
 
 
