@@ -47,11 +47,14 @@ def edit(request, id):
 
 
 def update(request, id):
-    books = BookList.objects.get(pk=id)
-    books.title = request.GET['title']
-    books.price = request.GET['price']
-    books.author = request.GET['author']
-    books.save()
+    try:
+        books = BookList.objects.get(pk=id)
+        books.title = request.GET['title']
+        books.price = request.GET['price']
+        books.author = request.GET['author']
+        books.save()
+    except BookList.DoesNotExist:
+        books = None
     return redirect('/')
 
 
