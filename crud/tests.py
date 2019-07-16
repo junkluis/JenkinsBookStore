@@ -63,10 +63,13 @@ class ViewsTestCase(TestCase):
     #   pass
 
     def test_edit_view(self):
-        response = self.client.get(reverse('edit'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'edit.html')
+        response = self.client.get(reverse('/edit/1'))
+        self.assertEqual(response.status_code, 301)
     #   pass
+
+    def test_update_view(self):
+        response = self.client.get(reverse('/update/1'))
+        self.assertEqual(response.status_code, 301)
 
 
 class FunctionsTestCase(TestCase):
