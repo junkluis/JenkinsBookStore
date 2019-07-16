@@ -4,12 +4,14 @@ from .models import BookList
 
 # Create your views here.
 
+
 def index(request):
     books = BookList.objects.all()
     context = {
         'books': books
     }
     return render(request, 'index.html', context)
+
 
 def create(request):
     title = request.GET['title']
@@ -24,11 +26,11 @@ def add_book(request):
     return render(request, 'add_book.html')
 
 
-
 def delete(request, id):
     books = BookList.objects.get(pk=id)
     books.delete()
     return redirect('/')
+
 
 def edit(request, id):
     books = BookList.objects.get(pk=id)
@@ -62,7 +64,6 @@ def agregarLibroAlCarrito(libro, carrito):
     return msj
 
 
-
 def calcularSubTotalCarrito(carrito):
     msj = ""
     subtotal = 0
@@ -76,7 +77,6 @@ def calcularSubTotalCarrito(carrito):
         subtotal = 0
 
     return (msj, subtotal)
-
 
 
 def buscarLibrosPorAutor(nombre_autor):

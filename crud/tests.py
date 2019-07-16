@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import BookList
 from .views import *
-
 # Create your tests here.
+
 
 class BookTestCase(TestCase):
 
@@ -24,11 +24,18 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
-    #   pass
+    def test_editar_libro(self):
+        info_libro = ["1984", 30, "George Orwell"]
+        book = BookList.objects.get("Fire & Ice")
+        book.price = 50
+        self.assertEqual(50, BookList.objects.get("Fire & Ice"))
 
-    # def test_eliminar_libro(self):
-    #   pass
+    def test_eliminar_libro(self):
+        lista_libros = len(BookList.objects.all())
+        BookList.objects.delete("Fire & Ice")
+        lista_libros_actualizado = len(BookList.objects.all())
+
+        self.assertEqual(lista_libros-1, lista_libros_actualizado)
 
     # def test_buscar_libro(self):
     #   pass
@@ -46,8 +53,10 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    # def test_create_view(self):
-    #   pass
+    def test_create_view(self):
+        response = self.client.get(reverse('create'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
 
     # def test_add_view(self):
     #   pass
