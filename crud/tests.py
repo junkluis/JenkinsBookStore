@@ -40,7 +40,6 @@ class BookTestCase(TestCase):
             exito = True
         self.assertEqual(False, exito)
 
-
 class ViewsTestCase(TestCase):
 
     # Prueba de una vista.
@@ -56,7 +55,6 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     # def test_add_view(self):
-
 
     # def test_delete_view(self):
     #   pass
@@ -89,11 +87,11 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_sub_carrito(self):
         libros = BookList.objects.all()
-        msj,subtotal= calcularSubTotalCarrito(libros)
+        msj, subtotal= calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
 
     def test_buscar_Libros_Por_Autor(self):
         msj_esperado = 'No se encontraron resultados'
-        msj,todoslibros = buscarLibrosPorAutor('Leonardo Castro')
+        msj, todoslibros = buscarLibrosPorAutor('Leonardo Castro')
         self.assertEqual(msj_esperado, msj)
