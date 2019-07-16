@@ -59,8 +59,10 @@ class ViewsTestCase(TestCase):
     # def test_create_view(self):
     #   pass
 
-    # def test_add_view(self):
-    #   pass
+    def test_add_view(self):
+        response = self.client.get(reverse('add_book'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
 
     # def test_delete_view(self):
     #   pass
