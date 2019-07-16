@@ -5,8 +5,8 @@ from .views import *
 
 # Create your tests here.
 
-class BookTestCase(TestCase):
 
+class BookTestCase(TestCase):
 
     def setUp(self):
         # Creamos un libro para las pruebas
@@ -42,12 +42,14 @@ class BookTestCase(TestCase):
         libro = BookList.objects.get(pk=1)
         self.assertEqual(info_libro, [libro.title, libro.price, libro.author])
 
-    # def test_libro_sin_precio(self):
-    #   pass
-
+    def test_libro_sin_precio(self):
+        info_libro = ["Festin de Cuervos", "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=0,
+                                author=info_libro[1])
+        self.assertEqual(0, (BookList.objects.get(title="Festin de Cuervos")).price)
 
 class ViewsTestCase(TestCase):
-
     # Prueba de una vista.
     def test_index_view(self):
         # response = self.client.get(reverse('index', args=[self.userName]))
