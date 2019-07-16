@@ -116,7 +116,7 @@ class FunctionsTestCase(TestCase):
         libros = BookList.objects.all()
         libro_prueba = None
         msj = agregarLibroAlCarrito(libro_prueba, carrito)
-        msj_esperado = 'Error: No hay ningun libro'
+        msj_esperado = 'Err: No hay ningun libro'
         self.assertEqual(msj_esperado, msj)
 
 
