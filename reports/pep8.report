@@ -1,0 +1,18 @@
+crud/tests.py:8:1: E302 expected 2 blank lines, found 1
+crud/tests.py:32:33: E128 continuation line under-indented for visual indent
+crud/tests.py:33:33: E128 continuation line under-indented for visual indent
+crud/tests.py:39:5: E265 block comment should start with '# '
+crud/tests.py:42:5: E265 block comment should start with '# '
+crud/tests.py:45:5: E265 block comment should start with '# '
+crud/tests.py:59:80: E501 line too long (100 > 79 characters)
+crud/tests.py:59:63: E231 missing whitespace after ':'
+crud/tests.py:59:79: E231 missing whitespace after ':'
+crud/tests.py:59:92: E231 missing whitespace after ':'
+crud/tests.py:63:5: E303 too many blank lines (2)
+crud/views.py:7:1: E302 expected 2 blank lines, found 1
+crud/views.py:14:1: E302 expected 2 blank lines, found 1
+crud/views.py:28:1: E303 too many blank lines (3)
+crud/views.py:33:1: E302 expected 2 blank lines, found 1
+crud/views.py:66:1: E303 too many blank lines (3)
+crud/views.py:82:1: E303 too many blank lines (3)
+crud/migrations/0001_initial.py:17:80: E501 line too long (114 > 79 characters)
