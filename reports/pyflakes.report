@@ -1,0 +1,12 @@
+..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:1: [E] PYFLAKES:'from django.contrib.messages.api import *' used; unable to detect undefined names
+..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:1: [E] PYFLAKES:'django.contrib.messages.api.*' imported but unused
+..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:2: [E] PYFLAKES:'from django.contrib.messages.constants import *' used; unable to detect undefined names
+..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:2: [E] PYFLAKES:'django.contrib.messages.constants.*' imported but unused
+crud\tests.py:4: [E] PYFLAKES:'from .views import *' used; unable to detect undefined names
+crud\tests.py:83: [E] PYFLAKES:local variable 'libro_prueba' is assigned to but never used
+crud\tests.py:91: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:95: [E] PYFLAKES:redefinition of unused 'test_agregar_carrito' from line 88
+crud\tests.py:101: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:107: [E] PYFLAKES:local variable 'msj_esperado' is assigned to but never used
+crud\tests.py:108: [E] PYFLAKES:local variable 'carrito' is assigned to but never used
+crud\views.py:1: [E] PYFLAKES:'django.shortcuts.HttpResponse' imported but unused
