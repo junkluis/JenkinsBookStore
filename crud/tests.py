@@ -7,6 +7,7 @@ from .views import *
 
 class BookTestCase(TestCase):
 
+
     def setUp(self):
         # Creamos un libro para las pruebas
         BookList.objects.create(title="Fire & Ice",
@@ -29,7 +30,6 @@ class BookTestCase(TestCase):
         book.title = "Snow"
         book.save(update_fields=["title"])
         self.assertEqual("Snow", book.title)
-
 
     def test_eliminar_libro(self):
         book = BookList.objects.get(price=90)
@@ -87,7 +87,7 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_sub_carrito(self):
         libros = BookList.objects.all()
-        msj, subtotal= calcularSubTotalCarrito(libros)
+        msj, subtota l= calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
 
