@@ -29,10 +29,10 @@ class BookTestCase(TestCase):
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        precioOld = BookList.objects.get(title="Festin de Cubervos").price
-        book = BookList.objects.get("Festin de Cubervos")
+        precioOld = BookList.objects.filter(title="Festin de Cuervos").price
+        book = BookList.objects.filter("Festin de Cuervos")
         book.price = 100
-        self.assertEqual(precioOld+10, book.price)
+        self.assertEqual(precioOld+60, book.price)
 
     """def test_eliminar_libro(self):
         info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
@@ -72,7 +72,7 @@ class BookTestCase(TestCase):
         for x in libros:
             suma += x.price
         preciosTotal = calcularSubTotalCarrito(BookList.objects.all())
-        self.assertEqual(("El subtotal es: $"+suma, suma), preciosTotal)
+        self.assertTruple(("El subtotal es: $"+str(suma), suma), preciosTotal)
 
 
 class ViewsTestCase(TestCase):
