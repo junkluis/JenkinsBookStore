@@ -115,7 +115,7 @@ class FunctionsTestCase(TestCase):
         carrito = []
         libros = BookList.objects.all()
         libro_prueba = None
-        msj = agregarLibroAlCarrito(lista_prueba, carrito)
+        msj = agregarLibroAlCarrito(libro_prueba, carrito)
         msj_esperado = 'Error: No hay ningun libro'
         self.assertEqual(msj_esperado, msj)
 
@@ -126,7 +126,7 @@ class FunctionsTestCase(TestCase):
         libro_prueba = BookList.objects.create(title="Fire",
                                                price=90,
                                                author="Alex")
-        for i in range(10)
-        msj = agregarLibroAlCarrito(lista_prueba, carrito)
+        for i in range(10):
+        msj = agregarLibroAlCarrito(libro_prueba, carrito)
         msj_esperado = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
         self.assertEqual(msj_esperado, msj)
