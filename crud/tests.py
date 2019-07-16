@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.test import TestCase
 from django.urls import reverse
 from .models import BookList
 from .views import *
@@ -23,18 +24,6 @@ class BookTestCase(TestCase):
         lista_libros_actualizado = len(BookList.objects.all())
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
-
-    # def test_editar_libro(self):
-    #   pass
-
-    # def test_eliminar_libro(self):
-    #   pass
-
-    # def test_buscar_libro(self):
-    #   pass
-
-    # def test_libro_sin_precio(self):
-    #   pass
 
 
 class ViewsTestCase(TestCase):
@@ -90,6 +79,20 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito(self):
         carrito = []
         libros = BookList.objects.all()
-        msj = agregarLibroAlCarrito(libros[0], carrito)
-        msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
+        libro_prueba = BookList.objects.create(title= "Libro",
+                                              price=20,
+                                              author="NEIL GAIMAN")
+        msj = agregarLibroAlCarrito(libro_prueba, carrito)
+        msj_esperado = 'Libro: ' + (libro_prueba.title)+ ' fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
+
+    def test_agregar_carrito_max(self):
+        carrito = [BookList.objects.all()]
+        libros = BookList.objects.all()
+        libro_prueba = BookList.objects.create(title= "Libro",
+                                              price=20,
+                                              author="NEIL GAIMAN")
+       for i in range(15):
+           msj= agregarLibroAlCarrito(libro_prueba,carrito)
+       msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
+       self.assertEqual(msj_esperado,msj)    
