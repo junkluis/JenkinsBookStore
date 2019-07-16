@@ -25,7 +25,7 @@ class BookTestCase(TestCase):
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
     def test_editar_libro(self):
-        book = BookList.objecs.get(price=90)
+        book = BookList.objects.get(price=90)
         book.title = "Snow"
         book.save(update_fields=["title"])
         self.assertEqual("Snow",book.save)
@@ -34,7 +34,11 @@ class BookTestCase(TestCase):
     def test_eliminar_libro(self):
         book = BookList.objects.get(price=90)
         book.delete()
-        self.assertEqual(None,BookList.objects.get(price=90))        
+        new_book = BookList.objects.filter(price=90)
+        exito = False
+        if new_book :
+            exito = True
+        self.assertEqual(False,exito)        
         
 
     # def test_eliminar_libro(self):
