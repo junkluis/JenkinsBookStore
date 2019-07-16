@@ -121,7 +121,7 @@ class FunctionsTestCase(TestCase):
 
 
     def test_agregar_carrito_libro_maximo(self):
-        carrito = []
+        carrito = [BookList.objects.all()]
         libros = BookList.objects.all()
         libro_prueba = BookList.objects.create(title="Fire",
                                                price=90,
