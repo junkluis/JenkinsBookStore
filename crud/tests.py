@@ -27,14 +27,46 @@ class BookTestCase(TestCase):
        lista_libros_actualizado = len(BookList.objects.all())
        self.assertEqual(lista_libros + 1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
-    #   pass
+    def test_editar_libro(self):
+        """ Prueba de actualizar campos"""
+        update_fields = ['title', 'price']
+        update_data = ['Earth II', 200]
 
-    # def test_eliminar_libro(self):
-    #   pass
+        book = BookList.objects.first()
+        book.title = 'Earth II'
+        book.price = 200
+        book.save(update_fields=update_fields)
 
-    # def test_buscar_libro(self):
-    #   pass
+        book = BookList.objects.first()
+        self.assertEqual(update_data[0], book.title)
+        self.assertEqual(update_data[1], book.price)
+
+    def test_eliminar_libro(self):
+        cantidad_actual = BookList.objects.all().count()
+        cantidad_esperada = cantidad_actual - 1
+
+        book = BookList.objects.first()
+        book.delete()
+
+        self.assertEqual(cantidad_esperada, BookList.objects.all().count())
+
+    def test_buscar_libro(self):
+
+        params_busqueda = {
+            'title':"Fire & Ice",
+            'price': 90,
+            'author': "Luis Zuniga"
+        }
+        found = True
+        try:
+            book = BookList.objects.get(**params_busqueda)
+        except BookList.DoesNotExist:
+            found = False
+
+        self.assertTrue(found)
+        self.assertEqual(params_busqueda['title'], book.title)
+        self.assertEqual(params_busqueda['price'], book.price)
+        self.assertEqual(params_busqueda['author'], book.author)
 
     # def test_libro_sin_precio(self):
     #   pass
@@ -97,6 +129,35 @@ class FunctionsTestCase(TestCase):
         msj = agregar_libro_al_carrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
+
+    def test_elemento_inesperado_en_carrito(self):
+        """Non BookList instance in method test"""
+        book = "not a book"
+        msj_esperado = 'Err: No hay ningun libro'
+
+        carrito = []
+        msj = agregar_libro_al_carrito(book, carrito)
+        self.assertEqual(msj_esperado, msj)
+
+    def test_demasiados_libros_en_carrito(self):
+        """Test for trying to add more than 10 books to cart"""
+        for i in range(11):
+            title="Bears are Cool".format(i)
+            libro_prueba = BookList.objects.create(title=title,
+                                                    price=(i + 1) * 10,
+                                                    author="Alex Arktos")
+        carrito = []
+        msj_esperado = 'Solo puede ingresar hasta un maximo de 10 ' +\
+                        'Libros al carrito'
+        msj = ''
+        books = list(BookList.objects.filter(author="Alex Arktos"))[:11]
+
+        for i in range(11):
+            msj = agregar_libro_al_carrito(books[i], carrito)
+
+        self.assertEqual(11, len(books))
+        self.assertEqual(msj_esperado, msj)
+
 
     def test_calcular_subtotal(self):
         """ Test subtotal calculation"""
