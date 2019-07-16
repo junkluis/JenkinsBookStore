@@ -90,7 +90,7 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito(self):
         carrito = []
         libros = BookList.objects.all()
-        libro_prueba = BookList.object.create(title= "Libro 1",
+        libro_prueba = BookList.objects.create(title= "Libro 1",
                                               price=20,
                                               author="Charlie")
         msj = agregarLibroAlCarrito(libros_prueba, carrito)
