@@ -87,7 +87,7 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_sub_carrito(self):
         libros = BookList.objects.all()
-        msj, subtota l= calcularSubTotalCarrito(libros)
+        msj, subtotal = calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
 
