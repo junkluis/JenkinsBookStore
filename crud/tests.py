@@ -35,23 +35,25 @@ class BookTestCase(TestCase):
     # def test_eliminar_libro(self):
     #   pass
 
-#    def test_buscar_libro(self):
-#        lista_libros = len(BookList.objects.all())
-#        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
-#        BookList.objects.create(title=info_libro[0],
-#                                price=info_libro[1],
-#                                author=info_libro[2])
-#        lista_libros_actualizado = len(BookList.objects.all())
+    def test_buscar_libro(self):
+        lista_libros = len(BookList.objects.all())
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        libro = BookList.objects.get(title="Festin de Cuervos")
+        libro.delete()
+        lista_libros_actualizado = len(BookList.objects.all())
 
-#        self.assertEqual(lista_libros-1, lista_libros_actualizado)
+        self.assertEqual(lista_libros, lista_libros_actualizado)
 
     def test_libro_sin_precio(self):
         info_libro = ["Festin de Cuervos",0, "Luis Zuniga"]
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        query = BookList.objects.values('id', 'price')
-        valor = query.price
+        libro = BookList.objects.get(title="Festin de Cuervos")[0]
+        valor = libro.price
         self.assertEqual(0, valor)
         
     #   pass
