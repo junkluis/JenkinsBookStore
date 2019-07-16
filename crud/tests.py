@@ -24,8 +24,11 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
-    #   pass
+    def test_editar_libro(self):
+        BookList.objects.filter(title="Fire & Ice").update(title="Stark & Wolfs")
+        #print(libro_editado.title+" != Fire & Ice")
+        self.assertEqual(BookList.objects.get(title="Stark & Wolfs").title,"Stark & Wolfs")
+
 
     # def test_eliminar_libro(self):
     #   pass
