@@ -57,7 +57,12 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        response = self.client.get(reverse('create'), {"title": 'Prueba', "price": 90, "author": "José Massón"})
+        response = self.client.get(reverse('create'), 
+                                    {
+                                        "title": 'Prueba', 
+                                        "price": 90, 
+                                        "author": "José Massón"}
+                                    )
         self.assertEqual(response.status_code, 302)
 
     def test_add_view(self):
@@ -107,6 +112,14 @@ class FunctionsTestCase(TestCase):
         msj, subtotal = calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
+
+    def test_calcular_sub_carrito_vacio(self):
+        carrito = 0
+        msj, subtotal = calcularSubTotalCarrito(carrito)
+        msj_esperado = 'No tiene libros en el carrito.'
+        subtotal_esperado = 0
+        self.assertEqual(subtotal, subtotal_esperado)
+        self.assertEqual(msj, msj_esperado)
 
     def test_buscar_libros_por_autor_no_existente(self):
         msj_esperado = "No se encontraron resultados"
