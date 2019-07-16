@@ -1,3 +1,4 @@
+"""Definition of tests for app crud"""
 from django.test import TestCase
 from django.urls import reverse
 from .models import BookList
@@ -5,15 +6,19 @@ from .views import *
 
 # Create your tests here.
 
+
 class BookTestCase(TestCase):
+"""Test Case class for book CRUD"""
 
     def setUp(self):
+        """ Initial setup for test case"""
         # Creamos un libro para las pruebas
         BookList.objects.create(title="Fire & Ice",
                                 price=90,
                                 author="Luis Zuniga")
 
     def test_crear_nuevo_libro(self):
+        """Test create new book"""
 
         lista_libros = len(BookList.objects.all())
         info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
@@ -22,7 +27,7 @@ class BookTestCase(TestCase):
                                 author=info_libro[2])
         lista_libros_actualizado = len(BookList.objects.all())
 
-        self.assertEqual(lista_libros+1, lista_libros_actualizado)
+        self.assertEqual(lista_libros + 1, lista_libros_actualizado)
 
     # def test_editar_libro(self):
     #   pass
@@ -38,9 +43,11 @@ class BookTestCase(TestCase):
 
 
 class ViewsTestCase(TestCase):
+    """Test Views for app"""
 
     # Prueba de una vista.
     def test_index_view(self):
+        """Test index template rendering"""
         # response = self.client.get(reverse('index', args=[self.userName]))
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
@@ -60,8 +67,10 @@ class ViewsTestCase(TestCase):
 
 
 class FunctionsTestCase(TestCase):
+    """TestCaste for model instance functions"""
 
     def setUp(self):
+        """ Initial setup for test case """
         # Creamos un libro para las pruebas
         libro_prueba = BookList.objects.create(title="Fire & Ice",
                                                price=90,
@@ -75,6 +84,7 @@ class FunctionsTestCase(TestCase):
 
     # Prueba de una vista.
     def test_agregar_carrito(self):
+        """ Add to cart book """
         carrito = []
         libros = BookList.objects.all()
         msj = agregarLibroAlCarrito(libros[0], carrito)

@@ -4,14 +4,18 @@ from .models import BookList
 
 # Create your views here.
 
+
 def index(request):
+    """List books in front page"""
     books = BookList.objects.all()
     context = {
         'books': books
     }
     return render(request, 'index.html', context)
 
+
 def create(request):
+    """Create book instance"""
     title = request.GET['title']
     price = request.GET['price']
     author = request.GET['author']
@@ -21,16 +25,19 @@ def create(request):
 
 
 def add_book(request):
+    """Renders form to add book"""
     return render(request, 'add_book.html')
 
 
-
 def delete(request, id):
+    """Remove book instance"""
     books = BookList.objects.get(pk=id)
     books.delete()
     return redirect('/')
 
+
 def edit(request, id):
+    """Edit book instance template"""
     books = BookList.objects.get(pk=id)
     context = {
         'books': books
@@ -39,6 +46,7 @@ def edit(request, id):
 
 
 def update(request, id):
+    """Update book instance"""
     books = BookList.objects.get(pk=id)
     books.title = request.GET['title']
     books.price = request.GET['price']
@@ -47,13 +55,14 @@ def update(request, id):
     return redirect('/')
 
 
-def agregarLibroAlCarrito(libro, carrito):
+def agregar_libro_al_carrito(libro, carrito):
+    """Adds book to shopping cart"""
     msj = ''
 
-    if(isinstance(libro, BookList)):
-        if(len(carrito) < 10):
+    if isinstance(libro, BookList):
+        if len(carrito) < 10:
             carrito.append(libro)
-            msj = 'Libro: '+(libro.title)+' fue agregado al carrito'
+            msj = 'Libro: ' + (libro.title) + ' fue agregado al carrito'
         else:
             msj = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
     else:
@@ -62,12 +71,12 @@ def agregarLibroAlCarrito(libro, carrito):
     return msj
 
 
-
-def calcularSubTotalCarrito(carrito):
+def calcular_subtotal_carrito(carrito):
+    """Get total value sans IVA"""
     msj = ""
     subtotal = 0
 
-    if(carrito != 0):
+    if carrito != 0:
         for libro in carrito:
             subtotal += libro.price
         msj = 'El subtotal es: $'.str(subtotal)
@@ -78,14 +87,14 @@ def calcularSubTotalCarrito(carrito):
     return (msj, subtotal)
 
 
-
-def buscarLibrosPorAutor(nombre_autor):
+def buscar_libros_por_autor(nombre_autor):
+    """Get filtered book list"""
     msj = ""
-    todosLosLibros = BookList.objects.filter(author=nombre_autor)
+    todos_los_libros = BookList.objects.filter(author=nombre_autor)
 
-    if(len(todosLosLibros) > 0):
-        msj = 'Se encontraron '+str(len(todosLosLibros))+' resultados'
+    if todos_los_libros:
+        msj = 'Se encontraron ' + str(len(todos_los_libros)) + ' resultados'
     else:
         msj = 'No se encontraron resultados'
 
-    return (msj, todosLosLibros)
+    return (msj, todos_los_libros)
