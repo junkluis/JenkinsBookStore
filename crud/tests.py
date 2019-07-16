@@ -105,7 +105,9 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito_limite_10(self):
         carrito = []
         libros = BookList.objects.all()
-        msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
+        msj_esperado = "Solo puede ingresar hasta "
+        msj_esperado += "un maximo de 10 Libros "
+        msj_esperado += "al carrito"
         for i in range(11):
             libro = libros[0]
             msj = agregarLibroAlCarrito(libros[0], carrito)
