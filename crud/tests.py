@@ -90,3 +90,8 @@ class FunctionsTestCase(TestCase):
         msj,subtotal= calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado,subtotal)
+
+    def test_buscar_Libros_Por_Autor(self):
+        msj_esperado = 'No se encontraron resultados'
+        msj,todoslibros = buscarLibrosPorAutor('Leonardo Castro')
+        self.assertEqual(msj_esperado,msj)
