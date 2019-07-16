@@ -12,7 +12,6 @@ def index(request):
     return render(request, 'index.html', context)
 
 def create(request):
-    print(request.POST)
     title = request.GET['title']
     price = request.GET['price']
     author = request.GET['author']
@@ -54,7 +53,7 @@ def agregarLibroAlCarrito(libro, carrito):
     if(isinstance(libro, BookList)):
         if(len(carrito) < 10):
             carrito.append(libro)
-            msj = 'Libro: '.libro.title.' fue agregado al carrito'
+            msj = 'Libro: '+(libro.title)+' fue agregado al carrito'
         else:
             msj = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
     else:
@@ -85,7 +84,7 @@ def buscarLibrosPorAutor(nombre_autor):
     todosLosLibros = BookList.objects.filter(author=nombre_autor)
 
     if(len(todosLosLibros) > 0):
-        msj = 'Se encontraron '.str(len(todosLosLibros)).' resultados'
+        msj = 'Se encontraron '+str(len(todosLosLibros))+' resultados'
     else:
         msj = 'No se encontraron resultados'
 
