@@ -55,7 +55,7 @@ class ViewsTestCase(TestCase):
 
 
     def test_create_view(self):
-        data = {"title":"dfdf", "price":40, "author":"dsfd"}
+        data = {"title": "dfdf", "price": 40, "author": "dsfd"}
         response = self.client.get(reverse('create'), data)
         self.assertEqual(response.status_code, 302)
 
@@ -103,7 +103,6 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
-
     def test_agregar_carrito_nuevo(self):
         carrito = []
         libros = BookList.objects.all()
@@ -114,7 +113,6 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: '+(libro_prueba.title)+' fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
-
     def test_agregar_carrito_no_libro(self):
         carrito = []
         libros = BookList.objects.all()
@@ -122,7 +120,6 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(libro_prueba, carrito)
         msj_esperado = 'Err: No hay ningun libro'
         self.assertEqual(msj_esperado, msj)
-
 
     def test_agregar_carrito_max_libro(self):
         carrito = [BookList.objects.all()]
@@ -133,4 +130,22 @@ class FunctionsTestCase(TestCase):
         for i in range(10):
             msj = agregarLibroAlCarrito(libro_prueba, carrito)
         msj_esperado = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
+        self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_subtotal_carrito_vacio(self):
+        carrito = []
+        msj = calcularSubTotalCarrito(carrito)
+        msj_text = 'El subtotal es: $'+str(0)
+        msj_esperado = (msj_text, 0)
+        self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_subtotal_carrito_nada(self):
+        carrito = []
+        libro_prueba = BookList.objects.create(title="Libro 1",
+                                               price=20,
+                                               author="MAuricio Leiton")
+        agregarLibroAlCarrito(libro_prueba, carrito)
+        msj = calcularSubTotalCarrito(carrito)
+        msj_text = 'El subtotal es: $'+str(libro_prueba.price)
+        msj_esperado = (msj_text, libro_prueba.price)
         self.assertEqual(msj_esperado, msj)
