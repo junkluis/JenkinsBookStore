@@ -1,0 +1,5 @@
+Django
+pytz==2018.5
+django-jenkins
+pep8
+pyflakes
