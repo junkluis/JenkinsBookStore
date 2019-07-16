@@ -47,3 +47,47 @@ def update(request, id):
     books.save()
     return redirect('/')
 
+
+def agregarLibroAlCarrito(libro, carrito):
+    msj = ''
+
+    if(isinstance(libro, BookList)):
+        if(len(carrito) < 10):
+            carrito.append(libro)
+            msj = 'Libro: '.libro.title.' fue agregado al carrito'
+        else:
+            msj = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
+    else:
+        msj = 'Err: No hay ningun libro'
+
+    return msj
+
+
+
+def calcularSubTotalCarrito(carrito):
+    msj = ""
+    subtotal = 0
+
+    if(carrito != 0):
+        for libro in carrito:
+            subtotal += libro.price
+        msj = 'El subtotal es: $'.str(subtotal)
+    else:
+        msj = 'No tiene libros en el carrito'
+        subtotal = 0
+
+    return (msj, subtotal)
+
+
+
+def buscarLibrosPorAutor(nombre_autor):
+    msj = ""
+    todosLosLibros = BookList.objects.filter(author=nombre_autor)
+
+    if(len(todosLosLibros) > 0):
+        msj = 'Se encontraron '.str(len(todosLosLibros)).' resultados'
+    else:
+        msj = 'No se encontraron resultados'
+
+    return (msj, todosLosLibros)
+    

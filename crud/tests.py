@@ -9,6 +9,7 @@ class BookTestCase(TestCase):
     	BookList.objects.create(title="Fire & Ice", price=90, author="Luis Zuniga")
 
     def test_crear_nuevo_libro(self):
+    	
     	lista_libros = len(BookList.objects.all())
     	print(lista_libros)
     	info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
