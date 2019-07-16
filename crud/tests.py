@@ -47,7 +47,7 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        response = self.client.get(reverse('create'),{"titel":"pruebita","price":40,"author":"Charlie"})
+        response = self.client.get(reverse('create'),{"title":"pruebita","price":40,"author":"Charlie"})
         self.assertEqual(response.status_code, 302)
     #   pass
 
