@@ -75,11 +75,11 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'add_book.html')
 
     def test_delete_view(self):
-        response = self.client.get(reverse('/delete/1'))
+        response = self.client.get(reverse('delete'), args=(1, ))
         self.assertEqual(response.status_code, 301)
 
     def test_edit_view(self):
-        response = self.client.get(reverse("/edit/1"))
+        response = self.client.get(reverse("edit"), args=(1,))
         self.assertEqual(response.status_code, 301)
 
 
