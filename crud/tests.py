@@ -90,6 +90,9 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito(self):
         carrito = []
         libros = BookList.objects.all()
-        msj = agregarLibroAlCarrito(libros[0], carrito)
-        msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
+        libro_prueba = BookList.object.create(title= "Libro 1",
+                                              price=20,
+                                              author="Charlie")
+        msj = agregarLibroAlCarrito(libros_prueba, carrito)
+        msj_esperado = 'Libro: ' + (libro_prueba.title)+ ' fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
