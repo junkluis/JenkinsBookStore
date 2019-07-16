@@ -121,7 +121,7 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'El subtotal es: $' + '170'
         self.assertEqual(msj_esperado, msj)
 
-    def test_buscar_libros_autor():
+    def test_buscar_libros_autor(self):
         nombre = "Fire & Ice III"
         msj , subtotal = buscarLibrosPorAutor(nombre)
         msj_esperado = 'Se encontraron 1 resultados'
