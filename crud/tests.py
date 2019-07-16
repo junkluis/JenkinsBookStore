@@ -37,7 +37,7 @@ class BookTestCase(TestCase):
         exito = True
         if book2:
             exito = False
-            self.assertEqual(True, exito)
+        self.assertEqual(True, exito)
 
     # def test_buscar_libro(self):
     #   pass
