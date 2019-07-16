@@ -28,7 +28,7 @@ class BookTestCase(TestCase):
         book = BookList.objects.get(price=90)
         book.title= "Snake"
         book.save(update_fields=["title"])
-        self.assertEqual("Sanke",book.title)
+        self.assertEqual("Snake",book.title)
     
     def test_eliminar_libro(self):
         book = BookList.objects.get(title="Fire & Ice")
@@ -37,7 +37,7 @@ class BookTestCase(TestCase):
         result = False
         if result :
             result = True
-        self.assertEqual(False,exito)
+        self.assertEqual(False,result)
         
 
     # def test_buscar_libro(self):
