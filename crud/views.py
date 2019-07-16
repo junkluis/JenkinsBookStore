@@ -76,10 +76,10 @@ def calcular_subtotal_carrito(carrito):
     msj = ""
     subtotal = 0
 
-    if carrito != 0:
+    if carrito:
         for libro in carrito:
             subtotal += libro.price
-        msj = 'El subtotal es: $'.str(subtotal)
+        msj = 'El subtotal es: ${}'.format(subtotal)
     else:
         msj = 'No tiene libros en el carrito.'
         subtotal = 0

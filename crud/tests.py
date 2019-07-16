@@ -18,16 +18,14 @@ class BookTestCase(TestCase):
                                 author="Luis Zuniga")
 
     def test_crear_nuevo_libro(self):
-        """Test create new book"""
-
-        lista_libros = len(BookList.objects.all())
-        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
-        BookList.objects.create(title=info_libro[0],
-                                price=info_libro[1],
-                                author=info_libro[2])
-        lista_libros_actualizado = len(BookList.objects.all())
-
-        self.assertEqual(lista_libros + 1, lista_libros_actualizado)
+       """Test create new book"""
+       lista_libros = len(BookList.objects.all())
+       info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+       BookList.objects.create(title=info_libro[0],
+                               price=info_libro[1],
+                               author=info_libro[2])
+       lista_libros_actualizado = len(BookList.objects.all())
+       self.assertEqual(lista_libros + 1, lista_libros_actualizado)
 
     # def test_editar_libro(self):
     #   pass
@@ -54,7 +52,16 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     # def test_create_view(self):
-    #   pass
+    #     data = {
+    #         "author": "Pablo Coehllo",
+    #         "price": 100,
+    #         "title": "No SE"
+    #     }
+
+    #     response = self.client.post(reverse('create'), data,
+    #                                     content_type='json')
+    #     self.assertEqual(response.status_code, 200)
+
 
     # def test_add_view(self):
     #   pass
@@ -90,3 +97,35 @@ class FunctionsTestCase(TestCase):
         msj = agregar_libro_al_carrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_subtotal(self):
+        """ Test subtotal calculation"""
+        subtotal_esperado = 90 + 80 + 40
+        msj_esperado = 'El subtotal es: ${}'.format(subtotal_esperado)
+
+        libros = BookList.objects.all()
+
+        msj, subtotal = calcular_subtotal_carrito(libros)
+        self.assertEqual(subtotal_esperado, subtotal)
+        self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_subtotal_carrito_vacio(self):
+        """ Subtotal esperado para carrito vacio"""
+        subtotal_esperado = 0
+        msj_esperado = 'No tiene libros en el carrito.'
+
+        libros = []
+
+        msj, subtotal = calcular_subtotal_carrito(libros)
+        self.assertEqual(subtotal_esperado, subtotal)
+        self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libro_autor(self):
+        """Busqueda de libro por autor existente"""
+        total = 3
+        msj_esperado = 'Se encontraron {} resultados'.format(total)
+        msj, libros = buscar_libros_por_autor("Luis Zuniga")
+
+        self.assertEqual(msj_esperado, msj)
+        self.assertEqual(total, libros.count())
+
