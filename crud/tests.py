@@ -5,6 +5,7 @@ from .views import *
 
 # Create your tests here.
 
+
 class BookTestCase(TestCase):
 
     def setUp(self):
@@ -88,4 +89,20 @@ class FunctionsTestCase(TestCase):
         libros = BookList.objects.all()
         msj = agregarLibroAlCarrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
+        self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_sub_carrito(self):
+        libros = BookList.objects.all()
+        msj, subtotal = calcularSubTotalCarrito(libros)
+        subtotal_esperado = 210
+        self.assertEqual(subtotal_esperado, subtotal)
+
+    def test_buscar_libros_por_autor_no_existente(self):
+        msj_esperado = "No se encontraron resultados"
+        msj, todosLibros = buscarLibrosPorAutor('José Luis Massón')
+        self.assertEqual(msj_esperado, msj)
+    
+    def test_buscar_libros_por_autor_existente(self):
+        msj_esperado = "Se encontraron 3 resultados"
+        msj, todosLibros = buscarLibrosPorAutor('Luis Zuniga')
         self.assertEqual(msj_esperado, msj)
