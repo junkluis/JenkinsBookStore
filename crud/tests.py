@@ -57,7 +57,7 @@ class BookTestCase(TestCase):
     def test_eliminar_libro(self):
         libro_eliminar = BookList.objects.get(id=1)
         libro_eliminar.delete()
-        self.assertNotIn(libro,BookList.objects.all(),msg="Se elimino el libro correctamente")
+        self.assertNotIn(libro_eliminar,BookList.objects.all(),msg="Se elimino el libro correctamente")
 
 
     #   pass
