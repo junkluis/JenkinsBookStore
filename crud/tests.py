@@ -51,7 +51,8 @@ class BookTestCase(TestCase):
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        valor = BookList.get(0).price
+        query = Blog.objects.values('id', 'price')
+        valor = query.price
         self.assertEqual(0, valor)
         
     #   pass
