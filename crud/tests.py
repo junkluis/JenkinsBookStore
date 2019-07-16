@@ -24,16 +24,40 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
+    def test_editar_precio_libro(self):
+        libro_editar = BookList.objects.get(id=1)
+        nuevo_precio = libro_editar.price + 10
+        libro_editar.price = nuevo_precio
+        libro_editar.save()
+        self.assertEqual(libro_editar.price, nuevo_precio,msg="Se edito el precio correctamente")
+
+    def test_editar_title_libro(self):
+        libro_editar = BookList.objects.get(id=1)
+        nuevo_title = "Prueba"
+        libro_editar.title  = nuevo_title
+        libro_editar.save()
+        self.assertEqual(libro_editar.title, nuevo_title,msg="Se edito el titulo correctamente")
+
+    def test_editar_author_libro(self):
+        libro_editar = BookList.objects.get(id=1)
+        nuevo_author= "Lucio Arias"
+        libro_editar.author  = nuevo_author
+        libro_editar.save()
+        self.assertEqual(libro_editar.author, nuevo_author,msg="Se edito el autor correctamente")
+
+    def test_eliminar_libro(self):
+        libro_eliminar = BookList.objects.get(id=2)
+        libro_eliminar.delete()
+        self.assertNotIn(libro,BookList.objects.all(),msg="Se elimino el libro correctamente")
+
+    def test_buscar_libro(self):
+        libro = BookList.objects.get(id=1)
+        self.assertIn(libro,BookList.objects.all(),msg="El libro existe")
     #   pass
 
-    # def test_eliminar_libro(self):
-    #   pass
-
-    # def test_buscar_libro(self):
-    #   pass
-
-    # def test_libro_sin_precio(self):
+    def test_libro_sin_precio(self):
+        libro = BookList.objects.get(id=1)
+        self.assertNotEqual(libro.price,None,msg="El libro si posee precio")
     #   pass
 
 
