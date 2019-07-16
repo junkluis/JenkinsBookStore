@@ -35,7 +35,7 @@ class BookTestCase(TestCase):
         book = BookList.objects.get(price=90)
         book.delete()
         book2 = BookList.objects.filter(price=90)
-        self.assertEqual(book2, None)
+        self.assertEqual(len(book2), 0)
         # exito = True
         # if book2:
         #     exito = False
