@@ -57,12 +57,13 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        response = self.client.get(reverse('create'), 
+        response = self.client.get(
+                                    reverse('create'),
                                     {
                                         "title": 'Prueba', 
                                         "price": 90, 
-                                        "author": "José Massón"}
-                                    )
+                                        "author": "José Massón"
+                                    })
         self.assertEqual(response.status_code, 302)
 
     def test_add_view(self):
@@ -77,6 +78,7 @@ class ViewsTestCase(TestCase):
     def test_edit_view(self):
         response = self.client.get("/edit/1")
         self.assertEqual(response.status_code, 301)
+
 
 class FunctionsTestCase(TestCase):
 
