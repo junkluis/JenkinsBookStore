@@ -58,7 +58,8 @@ class ViewsTestCase(TestCase):
 
     def test_create_view(self):
         response = self.client.get(
-            '/create', {'title': 'How to program Java', 'price': 20, 'author': 'Deitel'})
+            '/create', {'title': 'How to program Java', 'price': 20,
+                        'author': 'Deitel'})
         self.assertEqual(response.status_code, 301)
 
     def test_add_view(self):
@@ -75,8 +76,8 @@ class ViewsTestCase(TestCase):
     def test_update_view(self):
         libros = BookList.objects.all()
         response = self.client.get(
-            f'/update/{libros[0].pk}', {'title': 'How to program Java', 'price': 20,
-                                        'author': 'Deitel'})
+            f'/update/{libros[0].pk}', {'title': 'How to program Java',
+                                        'price': 20, 'author': 'Deitel'})
         self.assertEqual(response.status_code, 301)
 
     def test_delete_view(self):
@@ -122,7 +123,7 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_subtotal_carrito_valido(self):
         carrito = BookList.objects.all()
-        msj,subtotal = calcular_subtotal_carrito(carrito)
+        msj, subtotal = calcular_subtotal_carrito(carrito)
         msj_esperado = 'El subtotal es: $210'
         subtotal_esperado = 210
         self.assertEqual(msj_esperado, msj)
@@ -130,7 +131,7 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_subtotal_carrito_vacio(self):
         carrito = 0
-        (msj,subtotal) = calcular_subtotal_carrito(carrito)
+        msj, subtotal = calcular_subtotal_carrito(carrito)
         msj_esperado = 'No tiene libros en el carrito.'
         subtotal_esperado = 0
         self.assertEqual(msj_esperado, msj)
