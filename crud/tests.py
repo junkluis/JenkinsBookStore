@@ -28,7 +28,7 @@ class BookTestCase(TestCase):
         book = BookList.objects.get(price=90)
         book.title = "Snow"
         book.save(update_fields=["title"])
-        self.assertEqual("Snow",book.title)
+        self.assertEqual("Snow", book.title)
 
 
     def test_eliminar_libro(self):
@@ -36,9 +36,9 @@ class BookTestCase(TestCase):
         book.delete()
         new_book = BookList.objects.filter(price=90)
         exito = False
-        if new_book :
+        if new_book:
             exito = True
-        self.assertEqual(False,exito)
+        self.assertEqual(False, exito)
 
 
 class ViewsTestCase(TestCase):
@@ -91,9 +91,9 @@ class FunctionsTestCase(TestCase):
         libros = BookList.objects.all()
         msj,subtotal= calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
-        self.assertEqual(subtotal_esperado,subtotal)
+        self.assertEqual(subtotal_esperado, subtotal)
 
     def test_buscar_Libros_Por_Autor(self):
         msj_esperado = 'No se encontraron resultados'
         msj,todoslibros = buscarLibrosPorAutor('Leonardo Castro')
-        self.assertEqual(msj_esperado,msj)
+        self.assertEqual(msj_esperado, msj)
