@@ -27,7 +27,6 @@ class BookTestCase(TestCase):
 
 
     def test_editar_libro(self):
-
 	titulo = "Festin de Cuervos"
 	libro = BookList.objects.get(title=titulo)
 	libro.author = "John Cuesta"
@@ -38,7 +37,6 @@ class BookTestCase(TestCase):
 
 
     def test_eliminar_libro(self):
-
 	titulo = "Festin de Cuervos"
 	libro = BookList.objects.get(title=titulo)
 	libro.delete()
