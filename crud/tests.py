@@ -29,7 +29,7 @@ class BookTestCase(TestCase):
     def test_editar_libro(self):
 
 	titulo = "Festin de Cuervos"
-	libro = BookList.objects.get(title = titulo)
+	libro = BookList.objects.get(title=titulo)
         libro.author = "John Cuesta"
         libro.save(update_fields=['author'])
 
@@ -40,9 +40,9 @@ class BookTestCase(TestCase):
     def test_eliminar_libro(self):
 
 	titulo = "Festin de Cuervos"
-	libro = BookList.objects.get(title = titulo)
+	libro = BookList.objects.get(title=titulo)
         libro.delete()
-        buscar_libro = BookList.objects.filter(title = titulo)
+        buscar_libro = BookList.objects.filter(title=titulo)
         eliminado = True
         if buscar_libro:
             eliminado = False
