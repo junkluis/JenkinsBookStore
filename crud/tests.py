@@ -103,7 +103,7 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito_nuevo(self):
         carrito = []
         libros = BookList.objects.all()
-        libro_prueba = BookList.objects.create(title="Fire",
+        libro_prueba = BookList.objects.create(title="Fire & Ice",
                                                price=90,
                                                author="Alex")
         msj = agregarLibroAlCarrito(libros[0], carrito)
@@ -123,7 +123,7 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito_libro_maximo(self):
         carrito = [BookList.objects.all()]
         libros = BookList.objects.all()
-        libro_prueba = BookList.objects.create(title="Fire",
+        libro_prueba = BookList.objects.create(title="Fire & Ice",
                                                price=90,
                                                author="Alex")
         for i in range(10):
