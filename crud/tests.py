@@ -5,6 +5,7 @@ from .views import *
 
 # Create your tests here.
 
+
 class BookTestCase(TestCase):
 
     def setUp(self):
@@ -49,22 +50,27 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
+
     def test_create_view(self):
         response = self.client.get(reverse('create'), {'title':'new', 'price':50,'author':'alex'})
         self.assertEqual(response.status_code, 302)
+
 
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
 
+
     def test_update_view(self):
         response = self.client.get(reverse('/update/1'))
         self.assertEqual(response.status_code, 301)
 
+
     def test_delete_view(self):
         response = self.client.get(reverse('/delete/1'))
         self.assertEqual(response.status_code, 301)
+
 
     def test_edit_view(self):
         response = self.client.get(reverse('/edit/1'))
@@ -93,6 +99,7 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
+
     def test_agregar_carrito_nuevo(self):
         carrito = []
         libros = BookList.objects.all()
@@ -103,6 +110,7 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: '+(libro_prueba.title)+' fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
+
     def test_agregar_carrito_else_libro(self):
         carrito = []
         libros = BookList.objects.all()
@@ -110,6 +118,7 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(lista_prueba, carrito)
         msj_esperado = 'Error: No hay ningun libro'
         self.assertEqual(msj_esperado, msj)
+
 
     def test_agregar_carrito_libro_maximo(self):
         carrito = []
