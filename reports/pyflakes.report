@@ -6,7 +6,6 @@ crud/tests.py:105: [E] PYFLAKES:local variable 'libros' is assigned to but never
 crud/tests.py:109: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
 crud/tests.py:115: [E] PYFLAKES:local variable 'libros' is assigned to but never used
 crud/tests.py:117: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:121: [E] PYFLAKES:redefinition of unused 'test_agregar_carrito_no_libro' from line 113
 crud/tests.py:123: [E] PYFLAKES:local variable 'libros' is assigned to but never used
 crud/tests.py:128: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
 crud/views.py:1: [E] PYFLAKES:'django.shortcuts.HttpResponse' imported but unused
