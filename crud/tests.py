@@ -30,8 +30,14 @@ class BookTestCase(TestCase):
         book.save(update_fields=['author'])
         self.assertEqual(book.author, "José Luis Massón")
 
-    # def test_eliminar_libro(self):
-    #   pass
+    def test_eliminar_libro(self):
+        book = BookList.objects.get(price=90)
+        book.delete()
+        book2 = BookList.objects.filter(price=90)
+        exito = True
+	if book2:
+            exito = False
+        self.assertEqual(True, exito)
 
     # def test_buscar_libro(self):
     #   pass
