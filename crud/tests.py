@@ -7,6 +7,7 @@ from .views import *
 
 class BookTestCase(TestCase):
 
+
     def setUp(self):
         # Creamos un libro para las pruebas
         BookList.objects.create(title="Fire & Ice",
@@ -37,13 +38,12 @@ class BookTestCase(TestCase):
         self.assertEqual(lista_libros-1, lista_libros_2)
 
     def test_buscar_libro(self):
-      info_libro = ["Fire & Ice", 90, "Luis Zuniga"]
-      libro = BookList.objects.get(pk=1)
+        info_libro = ["Fire & Ice", 90, "Luis Zuniga"]
+        libro = BookList.objects.get(pk=1)
+        self.assertEqual(info_libro, [libro.title, libro.price, libro.author])
 
-      self.assertEqual(info_libro, [libro.title, libro.price, libro.author])
-
-    def test_libro_sin_precio(self):
-      pass
+    # def test_libro_sin_precio(self):
+    #   pass
 
 
 class ViewsTestCase(TestCase):
