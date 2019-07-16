@@ -32,8 +32,12 @@ class BookTestCase(TestCase):
         libro = BookList.objects.get(title="Fire & Ice")
         self.assertEqual("Sebastian Ramirez", libro.author)
 
-    # def test_eliminar_libro(self):
-    #   pass
+    def test_eliminar_libro(self):
+        lista_libros = len(BookList.objects.all())
+        BookList.objects.filter(title="Fire & Ice").delete()
+        lista_libros_2 = len(BookList.objects.all())
+
+        self.assertEqual(lista_libros-1, lista_libros_2)
 
     # def test_buscar_libro(self):
     #   pass
