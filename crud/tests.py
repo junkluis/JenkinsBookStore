@@ -60,8 +60,8 @@ class ViewsTestCase(TestCase):
         response = self.client.get(
                                     reverse('create'),
                                     {
-                                        "title": 'Prueba', 
-                                        "price": 90, 
+                                        "title": 'Prueba',
+                                        "price": 90,
                                         "author": "José Massón"
                                     })
         self.assertEqual(response.status_code, 302)
