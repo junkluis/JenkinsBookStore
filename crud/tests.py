@@ -25,19 +25,27 @@ class BookTestCase(TestCase):
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
     def test_editar_libro(self):
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
         precioOld = BookList.objects.get(title="Festin de Cubervos").price
         book = BookList.objects.get("Festin de Cubervos")
         book.price = 100
         self.assertEqual(precioOld+10, book.price)
 
     def test_eliminar_libro(self):
-       lista_libros = len(BookList.objects.all())
-       book = BookList.objects.get("Festin de Cubervos")
-       del book
-       self.assertEqual(lista_libros-1, len(BookList.objects.all()))
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        lista_libros = len(BookList.objects.all())
+        book = BookList.objects.get("Festin de Cubervos")
+        del book
+        self.assertEqual(lista_libros-1, len(BookList.objects.all()))
 
     def test_buscar_libro_exitoso(self):
-        info_libro = ["Mil Horas", 40, "Jonathan Parrales"]
+        info_libro = ["Mil Horas 2", 40, "Jonathan Parrales"]
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
@@ -45,7 +53,7 @@ class BookTestCase(TestCase):
         self.assertEqual('Se encontraron 1 resultados', mensaje)
     
     def test_buscar_libro_fallido(self):
-        info_libro = ["Mil Horas", 40, "Jonathan Parrales"]
+        info_libro = ["Mil Horas 3", 40, "Jonathan Parrales"]
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
@@ -53,7 +61,7 @@ class BookTestCase(TestCase):
         self.assertEqual('No se encontraron resultados', mensaje)
 
     def test_calcular_subtotal_carrito(self):
-        info_libro = ["Mil Horas", 40, "Jonathan Parrales"]
+        info_libro = ["Mil Horas 4", 40, "Jonathan Parrales"]
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
@@ -62,7 +70,7 @@ class BookTestCase(TestCase):
         for x in libros:
             suma += x.price
         preciosTotal = calcularSubTotalCarrito(BookList.objects.all())
-        self.assertEqual(suma, preciosTotal)
+        self.assertEqual("El subtotal es: $"+str(suma), preciosTotal)
 
 
 class ViewsTestCase(TestCase):
