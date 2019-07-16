@@ -24,9 +24,11 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-   # def test_editar_libro(self):
-    #    BookList.objects.filter(title="Festin de Cuervos").update(price='100')
-     #   self.assertEqual(,)
+   def test_editar_libro(self):
+    mensaje_esperado="exitoso"
+       BookList.objects.filter(title="Festin de Cuervos").update(price='100')
+       mensaje="exitoso"
+       self.assertEqual(mensaje_esperado,mensaje)
 
     def test_eliminar_libro(self):
         lista_libros = len(BookList.objects.all())
