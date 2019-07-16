@@ -25,9 +25,6 @@ class BookTestCase(TestCase):
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
     def test_editar_libro(self):
-        # libro_editable = BookList.objects.filter(author="Luis Zuniga")
-        # libro_editable.author = "Sebastian Ramirez"
-        # libro_editable.save()
         BookList.objects.filter(author="Luis Zuniga").update(author="Sebastian Ramirez")
         libro = BookList.objects.get(title="Fire & Ice")
         self.assertEqual("Sebastian Ramirez", libro.author)
@@ -39,11 +36,14 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros-1, lista_libros_2)
 
-    # def test_buscar_libro(self):
-    #   pass
+    def test_buscar_libro(self):
+      info_libro = ["Fire & Ice", 90, "Luis Zuniga"]
+      libro = BookList.objects.get(pk=1)
 
-    # def test_libro_sin_precio(self):
-    #   pass
+      self.assertEqual(info_libro, [libro.title, libro.price, libro.author])
+
+    def test_libro_sin_precio(self):
+      pass
 
 
 class ViewsTestCase(TestCase):
