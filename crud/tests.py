@@ -27,7 +27,7 @@ class BookTestCase(TestCase):
     def test_editar_libro(self):
         book = BookList.objects.get(price = 90)
         book.title = "Snake"
-        book.save(update_Fields = ["title"])
+        book.save(update_fields = ["title"])
         self.assertEqual("Snake", book.title)
     #pass
 
@@ -38,7 +38,7 @@ class BookTestCase(TestCase):
         exito = False
         if new_book :
             exito = True
-        self.assertEqual(False, extito)
+        self.assertEqual(False, exito)
     #   pass
 
     # def test_buscar_libro(self):
@@ -94,11 +94,11 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_sub_carrito(self):
         libros = BookList.objects.all()
-        msj,subtotal = calcularSubtotalCarrito(libros)
+        msj,subtotal = calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
 
     def test_buscar_libros_Por_Autor(self):
         msj_esperado = 'No se encontraron resultados'
-        msj, todoslibros = buscarlibrosPorAutor('Andres Cepeda')
+        msj, todoslibros = buscarLibrosPorAutor('Andres Cepeda')
         self.assertEqual(msj_esperado, msj)
