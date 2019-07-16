@@ -29,7 +29,7 @@ class BookTestCase(TestCase):
         # libro_editable.author = "Sebastian Ramirez"
         # libro_editable.save()
         BookList.objects.filter(author="Luis Zuniga").update(author="Sebastian Ramirez")
-        libro = BookList.objects.filter(title="Fire & Ice")
+        libro = BookList.objects.get(title="Fire & Ice")
         self.assertEqual("Sebastian Ramirez", libro.author)
 
     # def test_eliminar_libro(self):
