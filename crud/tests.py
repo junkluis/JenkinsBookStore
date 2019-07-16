@@ -1,10 +1,10 @@
 from django.test import TestCase
-from django.test import TestCase
 from django.urls import reverse
 from .models import BookList
 from .views import *
 
 # Create your tests here.
+
 
 class BookTestCase(TestCase):
 
@@ -25,6 +25,22 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
+    def test_editar_libro(self):
+        book = BookList.objects.get(price=90)
+        book.author = "Poncho Pulido"
+        book.save(update_fields=['author'])
+        self.assertEqual(book.author, "Poncho Pulido")
+
+    def test_eliminar_libro(self):
+        book = BookList.objects.get(price=90)
+        book.delete()
+        book2 = BookList.objects.filter(price=90)
+        exito = True
+        if book2:
+            exito = False
+        self.assertEqual(True, exito)
+
+
 
 class ViewsTestCase(TestCase):
 
@@ -35,30 +51,13 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    def test_create_view(self):
-        response = self.client.get(reverse('create'),{"title":"MITOS NORDICOS","price": 40,"author":"NEIL GAIMAN"})
-        self.assertEqual(response.status_code, 302)
+    # def test_create_view(self):
     #   pass
 
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
-    #   pass
-
-    def test_delete_view(self):
-        response = self.client.get("/delete/1")
-        self.assertEqual(response.status_code, 301)
-    #   pass
-
-    def test_edit_view(self):
-        response = self.client.get("/edit/1")
-        self.assertEqual(response.status_code, 301)
-    #   pass
-
-    def test_update_view(self):
-        response = self.client.get("/update/1")
-        self.assertEqual(response.status_code, 301)
 
 
 class FunctionsTestCase(TestCase):
@@ -79,20 +78,22 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito(self):
         carrito = []
         libros = BookList.objects.all()
-        libro_prueba = BookList.objects.create(title= "Libro",
-                                              price=20,
-                                              author="NEIL GAIMAN")
-        msj = agregarLibroAlCarrito(libro_prueba, carrito)
-        msj_esperado = 'Libro: ' + (libro_prueba.title)+ ' fue agregado al carrito'
+        msj = agregarLibroAlCarrito(libros[0], carrito)
+        msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
-    def test_agregar_carrito_max(self):
-        carrito = [BookList.objects.all()]
+    def test_calcular_sub_carrito(self):
         libros = BookList.objects.all()
-        libro_prueba = BookList.objects.create(title= "Libro",
-                                              price=20,
-                                              author="NEIL GAIMAN")
-       for i in range(15):
-           msj= agregarLibroAlCarrito(libro_prueba,carrito)
-       msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
-       self.assertEqual(msj_esperado,msj)    
+        msj, subtotal = calcularSubTotalCarrito(libros)
+        subtotal_esperado = 210
+        self.assertEqual(subtotal_esperado, subtotal)
+
+    def test_buscar_libros_por_autor_no_existente(self):
+        msj_esperado = "NO HAY RESULTADOS"
+        msj, todosLibros = buscarLibrosPorAutor('Poncho Pulido')
+        self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libros_por_autor_existente(self):
+        msj_esperado = "ENCONTRARON 3 RESULTADOS"
+        msj, todosLibros = buscarLibrosPorAutor('Luis Zuniga')
+        self.assertEqual(msj_esperado, msj)
