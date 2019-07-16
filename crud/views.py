@@ -73,7 +73,7 @@ def calcularSubTotalCarrito(carrito):
             subtotal += libro.price
         msj = 'El subtotal es: $'.str(subtotal)
     else:
-        msj = 'No tiene libros en el carrito'
+        msj = 'No tiene libros en el carrito.'
         subtotal = 0
 
     return (msj, subtotal)
@@ -90,4 +90,3 @@ def buscarLibrosPorAutor(nombre_autor):
         msj = 'No se encontraron resultados'
 
     return (msj, todosLosLibros)
-    
