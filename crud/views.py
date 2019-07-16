@@ -27,17 +27,23 @@ def add_book(request):
 
 
 def delete(request, id):
-    books = BookList.objects.get(pk=id)
-    books.delete()
+    try:
+        books = BookList.objects.get(pk=id)
+        books.delete()
+    except BookList.DoesNotExist:
+        books = None
     return redirect('/')
 
 
 def edit(request, id):
-    books = BookList.objects.get(pk=id)
-    context = {
-        'books': books
-    }
-    return render(request, 'edit.html', context)
+    try:
+        books = BookList.objects.get(pk=id)
+        context = {
+            'books': books
+        }
+        return render(request, 'edit.html', context)
+    except BookList.DoesNotExist:
+        return render(request, 'edit.html', {})
 
 
 def update(request, id):
