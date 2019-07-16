@@ -14,6 +14,12 @@ class BookTestCase(TestCase):
                                 price=90,
                                 author="Luis Zuniga")
 
+    def test_obtener_titulo(self):
+        book = BookList.objects.get(price=90)
+        tituloEsperado = "Fire & Ice"
+        titulo = str(book)
+        self.assertEqual(titulo, tituloEsperado)
+
     def test_crear_nuevo_libro(self):
 
         lista_libros = len(BookList.objects.all())
@@ -36,10 +42,6 @@ class BookTestCase(TestCase):
         book.delete()
         book2 = BookList.objects.filter(price=90)
         self.assertEqual(len(book2), 0)
-        # exito = True
-        # if book2:
-        #     exito = False
-        # self.assertEqual(True, exito)
 
     # def test_buscar_libro(self):
     #   pass
