@@ -71,16 +71,24 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    # def test_create_view(self):
-    #   pass
+    #def test_create_view(self):
+    #    response = self.client.get(reverse('create'))
+    #    self.assertEqual(response.status_code, 200)
+    #   self.assertTemplateUsed(response, '')
 
-    # def test_add_view(self):
+    def test_add_view(self):
+        response = self.client.get(reverse('add_book'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
     #   pass
 
     # def test_delete_view(self):
     #   pass
 
-    # def test_edit_view(self):
+    def test_edit_view(self):
+        response = self.client.get(reverse('edit'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'edit.html')
     #   pass
 
 
@@ -111,4 +119,10 @@ class FunctionsTestCase(TestCase):
         carrito = [libros[0],libros[1]]
         msj , subtotal = calcularSubTotalCarrito(carrito)
         msj_esperado = 'El subtotal es: $' + '170'
+        self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libros_autor():
+        nombre = "Fire & Ice III"
+        msj , subtotal = buscarLibrosPorAutor(nombre)
+        msj_esperado = 'Se encontraron 1 resultados'
         self.assertEqual(msj_esperado, msj)
