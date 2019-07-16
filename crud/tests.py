@@ -35,10 +35,11 @@ class BookTestCase(TestCase):
         book = BookList.objects.get(price=90)
         book.delete()
         book2 = BookList.objects.filter(price=90)
-        exito = True
-        if book2:
-            exito = False
-        self.assertEqual(True, exito)
+        self.assertEqual(book2, None)
+        # exito = True
+        # if book2:
+        #     exito = False
+        # self.assertEqual(True, exito)
 
     # def test_buscar_libro(self):
     #   pass
