@@ -46,12 +46,11 @@ class BookTestCase(TestCase):
 #        self.assertEqual(lista_libros-1, lista_libros_actualizado)
 
     def test_libro_sin_precio(self):
-        lista_libros = len(BookList.objects.all())
         info_libro = ["Festin de Cuervos",0, "Luis Zuniga"]
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        query = Blog.objects.values('id', 'price')
+        query = BookList.objects.values('id', 'price')
         valor = query.price
         self.assertEqual(0, valor)
         
