@@ -85,10 +85,10 @@ class ViewsTestCase(TestCase):
     # def test_delete_view(self):
     #   pass
 
-    def test_edit_view(self):
-        response = self.client.get(reverse('edit'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'edit.html')
+    #def test_edit_view(self):
+    #    response = self.client.get(reverse('edit'))
+    #    self.assertEqual(response.status_code, 200)
+    #    self.assertTemplateUsed(response, 'edit.html')
     #   pass
 
 
