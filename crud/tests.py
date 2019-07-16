@@ -30,8 +30,8 @@ class BookTestCase(TestCase):
 
 	titulo = "Festin de Cuervos"
 	libro = BookList.objects.get(title=titulo)
-        libro.author = "John Cuesta"
-        libro.save(update_fields=['author'])
+	libro.author = "John Cuesta"
+	libro.save(update_fields=['author'])
 
 	self.assertEqual(libro.author, "John Cuesta")
 	#   pass
@@ -41,11 +41,12 @@ class BookTestCase(TestCase):
 
 	titulo = "Festin de Cuervos"
 	libro = BookList.objects.get(title=titulo)
-        libro.delete()
-        buscar_libro = BookList.objects.filter(title=titulo)
-        eliminado = True
-        if buscar_libro:
-            eliminado = False
+	libro.delete()
+	eliminado = True
+	existe_libro = BookList.objects.filter(title=titulo)
+	if existe_libro:
+		eliminado = False
+
 	self.assertEqual(True, eliminado)
     	#   pass
 
