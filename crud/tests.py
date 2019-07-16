@@ -24,16 +24,36 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
+    #def test_editar_libro(self):
+    #    bookTest = BookList.objects.create(title="Fire & Ice",
+    #                                       price=90,
+    #                                       author="Luis Zuniga")
+    #    bookTest.
+    #    self.assertEqual()
     #   pass
 
     # def test_eliminar_libro(self):
     #   pass
 
-    # def test_buscar_libro(self):
-    #   pass
+#    def test_buscar_libro(self):
+#        lista_libros = len(BookList.objects.all())
+#        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+#        BookList.objects.create(title=info_libro[0],
+#                                price=info_libro[1],
+#                                author=info_libro[2])
+#        lista_libros_actualizado = len(BookList.objects.all())
 
-    # def test_libro_sin_precio(self):
+#        self.assertEqual(lista_libros-1, lista_libros_actualizado)
+
+    def test_libro_sin_precio(self):
+        lista_libros = len(BookList.objects.all())
+        info_libro = ["Festin de Cuervos",0, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        valor = BookList.get(0).price
+        self.assertEqual(0, valor)
+        
     #   pass
 
 
@@ -47,6 +67,7 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     # def test_create_view(self):
+        #
     #   pass
 
     # def test_add_view(self):
