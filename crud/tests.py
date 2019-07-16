@@ -45,11 +45,6 @@ class BookTestCase(TestCase):
         libro_editar.save()
         self.assertEqual(libro_editar.author, nuevo_author,msg="Se edito el autor correctamente")
 
-    def test_eliminar_libro(self):
-        libro_eliminar = BookList.objects.get(id=2)
-        libro_eliminar.delete()
-        self.assertNotIn(libro,BookList.objects.all(),msg="Se elimino el libro correctamente")
-
     def test_buscar_libro(self):
         libro = BookList.objects.get(id=1)
         self.assertIn(libro,BookList.objects.all(),msg="El libro existe")
@@ -58,6 +53,13 @@ class BookTestCase(TestCase):
     def test_libro_sin_precio(self):
         libro = BookList.objects.get(id=1)
         self.assertNotEqual(libro.price,None,msg="El libro si posee precio")
+
+    def test_eliminar_libro(self):
+        libro_eliminar = BookList.objects.get(id=1)
+        libro_eliminar.delete()
+        self.assertNotIn(libro,BookList.objects.all(),msg="Se elimino el libro correctamente")
+
+
     #   pass
 
 
