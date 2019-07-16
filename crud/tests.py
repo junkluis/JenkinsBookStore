@@ -24,25 +24,25 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    def test_editar_libro(self):
-        nuevos_datos_del_libro = ["La pareja inolvidable", 56, "Luis Zuniga"]
-        nuevo_libro = BookList.objects.create(title=nuevos_datos_del_libro[0],
-                        price=nuevos_datos_del_libro[1],
-                        author=nuevos_datos_del_libro[2])
-        
+    def test_editar_libro(self): 
         libro_a_editar = BookList.objects.first()
-        
-        libro_a_editar.title=nuevos_datos_del_libro[0]
-        libro_a_editar.price=nuevos_datos_del_libro[1]
-        libro_a_editar.author=nuevos_datos_del_libro[2]
-        #self.assertEqual(nuevos_datos_del_libro[0], libro_a_editar.title)
-        #self.assertEqual(nuevos_datos_del_libro[1], libro_a_editar.price)
-        #self.assertEqual(nuevos_datos_del_libro[2], libro_a_editar.author)
-        self.assertEqual(nuevo_libro.title, libro_a_editar.title)
-        self.assertEqual(nuevo_libro.price, libro_a_editar.price)
-        self.assertEqual(nuevo_libro.author, libro_a_editar.author)
+        nuevo_precio = 100
 
-    # def test_eliminar_libro(self):
+        
+        libro_a_editar.price = nuevo_precio
+
+        self.assertEqual(100, libro_a_editar.price)
+
+
+    def test_eliminar_libro(self):
+        confirmacion = False
+        libro = BookList.objects.get(author = "Luis Zuniga")
+        libro.delete()
+        confirmar_libro_borrado = BookList.objects.filter(author = "Luis Zuniga")
+        if confirmar_libro_borrado:
+            confirmacion = True
+        
+        self.assertEqual(confirmacion, False)
        
 
     def test_buscar_libro(self):
@@ -52,8 +52,13 @@ class BookTestCase(TestCase):
         self.assertEqual(campos_esperados[1], libro_buscado.price)
         self.assertEqual(campos_esperados[2], libro_buscado.author)
 
-    # def test_libro_sin_precio(self):
-    #   pass
+    def test_libro_sin_precio(self):
+        libro_nuevo = BookList.objects.create(title="Las manzanas",
+                                price=0,
+                                author="Clara Alcazar L.")
+
+        self.assertEqual(0, libro_nuevo.price)    
+
 
 
 class ViewsTestCase(TestCase):
@@ -66,19 +71,26 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        #response = self.client.get(reverse('/'))
-        #self.assertEqual(response.status_code, 200)
-        pass
+        libro = {"title":"La pareja inolvidable", "price": 50, "author":"Wellington Martinez"}
+        respuesta = self.client.get(reverse('create'), libro)
+        self.assertEqual(respuesta.status_code, 302)
 
-    #def test_add_view(self):
-        #response = self.client.post()
+    def test_add_view(self):
+        respuesta = self.client.get(reverse('add_book'))
+        self.assertEqual(respuesta.status_code, 200)
+        self.assertTemplateUsed(respuesta, 'add_book.html')
 
-    # def test_delete_view(self):
-    #   pass
+    def test_delete_view(self):
+        respuesta = self.client.get("/delete/1")
+        self.assertEqual(respuesta.status_code, 301)
 
-    # def test_edit_view(self):
-    #   pass
+    def test_edit_view(self):
+        respuesta = self.client.get("/edit/1")
+        self.assertEqual(respuesta.status_code, 301)
 
+    def test_update_view(self):
+        respuesta = self.client.get("/update/1")
+        self.assertEqual(respuesta.status_code, 301)
 
 class FunctionsTestCase(TestCase):
 

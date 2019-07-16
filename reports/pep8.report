@@ -784,29 +784,33 @@
 ..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\staticfiles\management\commands\runserver.py:9:80: E501 line too long (90 > 79 characters)
 ..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\staticfiles\management\commands\runserver.py:15:80: E501 line too long (87 > 79 characters)
 crud\tests.py:8:1: E302 expected 2 blank lines, found 1
-crud\tests.py:30:25: E128 continuation line under-indented for visual indent
-crud\tests.py:31:25: E128 continuation line under-indented for visual indent
-crud\tests.py:32:1: W293 blank line contains whitespace
-crud\tests.py:34:1: W293 blank line contains whitespace
-crud\tests.py:35:29: E225 missing whitespace around operator
-crud\tests.py:36:29: E225 missing whitespace around operator
-crud\tests.py:37:30: E225 missing whitespace around operator
-crud\tests.py:38:9: E265 block comment should start with '# '
-crud\tests.py:39:9: E265 block comment should start with '# '
-crud\tests.py:40:9: E265 block comment should start with '# '
+crud\tests.py:27:33: W291 trailing whitespace
+crud\tests.py:31:1: W293 blank line contains whitespace
+crud\tests.py:32:9: E303 too many blank lines (2)
+crud\tests.py:37:5: E303 too many blank lines (2)
+crud\tests.py:39:44: E251 unexpected spaces around keyword / parameter equals
+crud\tests.py:39:46: E251 unexpected spaces around keyword / parameter equals
+crud\tests.py:41:80: E501 line too long (81 > 79 characters)
+crud\tests.py:41:65: E251 unexpected spaces around keyword / parameter equals
+crud\tests.py:41:67: E251 unexpected spaces around keyword / parameter equals
+crud\tests.py:44:1: W293 blank line contains whitespace
 crud\tests.py:46:1: W293 blank line contains whitespace
 crud\tests.py:48:5: E303 too many blank lines (2)
-crud\tests.py:69:9: E265 block comment should start with '# '
-crud\tests.py:70:9: E265 block comment should start with '# '
-crud\tests.py:73:5: E265 block comment should start with '# '
-crud\tests.py:74:9: E265 block comment should start with '# '
-crud\tests.py:104:1: W293 blank line contains whitespace
-crud\tests.py:105:50: W291 trailing whitespace
-crud\tests.py:106:21: W291 trailing whitespace
-crud\tests.py:112:80: E501 line too long (84 > 79 characters)
-crud\tests.py:123:45: W291 trailing whitespace
-crud\tests.py:131:56: W291 trailing whitespace
-crud\tests.py:146:1: W391 blank line at end of file
+crud\tests.py:57:33: E128 continuation line under-indented for visual indent
+crud\tests.py:58:33: E128 continuation line under-indented for visual indent
+crud\tests.py:60:47: W291 trailing whitespace
+crud\tests.py:64:1: E303 too many blank lines (3)
+crud\tests.py:74:80: E501 line too long (94 > 79 characters)
+crud\tests.py:74:25: E231 missing whitespace after ':'
+crud\tests.py:74:72: E231 missing whitespace after ':'
+crud\tests.py:95:1: E302 expected 2 blank lines, found 1
+crud\tests.py:116:1: W293 blank line contains whitespace
+crud\tests.py:117:50: W291 trailing whitespace
+crud\tests.py:118:21: W291 trailing whitespace
+crud\tests.py:124:80: E501 line too long (84 > 79 characters)
+crud\tests.py:135:45: W291 trailing whitespace
+crud\tests.py:143:56: W291 trailing whitespace
+crud\tests.py:158:1: W391 blank line at end of file
 crud\views.py:7:1: E302 expected 2 blank lines, found 1
 crud\views.py:14:1: E302 expected 2 blank lines, found 1
 crud\views.py:28:1: E303 too many blank lines (3)
