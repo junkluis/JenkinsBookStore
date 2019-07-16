@@ -47,23 +47,23 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-	response = self.client.get(reverse('create'),{"titel":"pruebita","price":40,"author":"Charlie"})
+        response = self.client.get(reverse('create'),{"titel":"pruebita","price":40,"author":"Charlie"})
         self.assertEqual(response.status_code, 302)
     #   pass
 
     def test_add_view(self):
-	response = self.client.get(reverse('add_book'))
+        response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
     #   pass
 
     def test_delete_view(self):
-	response = self.client.get(reverse('/delete/1'))
+        response = self.client.get(reverse('/delete/1'))
         self.assertEqual(response.status_code, 301)
     #   pass
 
     def test_edit_view(self):
-	response = self.client.get(reverse('edit'))
+        response = self.client.get(reverse('edit'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit.html')
     #   pass
