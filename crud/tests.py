@@ -28,11 +28,11 @@ class BookTestCase(TestCase):
         info_libro = ["1984", 30, "George Orwell"]
         book = BookList.objects.get("Fire & Ice")
         book.price = 50
-        self.assertEqual(50, BookList.objects.get("Fire & Ice"))
+        self.assertEqual(50, BookList.objects.get("Fire & Ice").price)
 
     def test_eliminar_libro(self):
         lista_libros = len(BookList.objects.all())
-        BookList.objects.delete("Fire & Ice")
+        BookList.objects.get("Fire & Ice").delete()
         lista_libros_actualizado = len(BookList.objects.all())
 
         self.assertEqual(lista_libros-1, lista_libros_actualizado)
