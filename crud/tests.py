@@ -25,7 +25,7 @@ class BookTestCase(TestCase):
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
     def test_editar_libro(self):
-        BookList libro_editable = BookList.objects.filter(author="Luis Zuniga")
+        libro_editable = BookList.objects.filter(author="Luis Zuniga")
         libro_editable.author = "Sebastian Ramirez"
         libro_editable.save()
 
