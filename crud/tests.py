@@ -8,7 +8,7 @@ from .views import *
 
 
 class BookTestCase(TestCase):
-"""Test Case class for book CRUD"""
+    """Test Case class for book CRUD"""
 
     def setUp(self):
         """ Initial setup for test case"""
@@ -87,6 +87,6 @@ class FunctionsTestCase(TestCase):
         """ Add to cart book """
         carrito = []
         libros = BookList.objects.all()
-        msj = agregarLibroAlCarrito(libros[0], carrito)
+        msj = agregar_libro_al_carrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
