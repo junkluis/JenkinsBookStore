@@ -24,27 +24,25 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    def test_crear_nuevo_libro_2(self):
-
+    def test_editar_libro(self):
+        title = "Nuevo titulo"
         lista_libros = len(BookList.objects.all())
-        info_libro = ["Mitos nordicos", 100 , "Neil Gaiman"]
-        BookList.objects.create(title=info_libro[0],
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        book = BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        lista_libros_actualizado = len(BookList.objects.all())
+        book.save()
+        book.title = title
+        book.save()
+        self.assertEqual(title, book.title)
 
-        self.assertEqual(lista_libros+1, lista_libros_actualizado)
-
-    # def test_editar_libro(self):
+    #def test_eliminar_libro(self):
     #   pass
 
-    # def test_eliminar_libro(self):
+    #def test_buscar_libro(self):
     #   pass
 
-    # def test_buscar_libro(self):
-    #   pass
-
-    # def test_libro_sin_precio(self):
+    #def test_libro_sin_precio(self):
     #   pass
 
 
@@ -57,23 +55,27 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    def test_index_view_2(self):
-            # response = self.client.get(reverse('index', args=[self.userName]))
-            response = self.client.get(reverse('index2'))
-            self.assertEqual(response.status_code, 200)
-            self.assertTemplateUsed(response, 'index2.html')
+    def test_create_view(self):
+        response = self.client.get(reverse('create'), {"title":"dfdf", "price":40, "author":"dsfd"})
+        self.assertEqual(response.status_code, 302)
 
-    # def test_create_view(self):
-    #   pass
 
-    # def test_add_view(self):
-    #   pass
+    def test_add_view(self):
+        response = self.client.get(reverse('add_book'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
 
-    # def test_delete_view(self):
-    #   pass
+    def test_delete_view(self):
+        response = self.client.get("/delete/1")
+        self.assertEqual(response.status_code, 301)
 
-    # def test_edit_view(self):
-    #   pass
+    def test_edit_view(self):
+        response = self.client.get("/edit/1")
+        self.assertEqual(response.status_code, 301)
+
+    def test_update_view(self):
+        response = self.client.get("/update/1")
+        self.assertEqual(response.status_code, 301)
 
 
 class FunctionsTestCase(TestCase):
@@ -89,10 +91,6 @@ class FunctionsTestCase(TestCase):
         libro_prueba = BookList.objects.create(title="Fire & Ice III",
                                                price=40,
                                                author="Luis Zuniga")
-        libro_prueba = BookList.objects.create(title="Mitos nordicos",
-                                               price=50,
-                                               author="Neil Gaiman")
-
 
     # Prueba de una vista.
     def test_agregar_carrito(self):
@@ -101,11 +99,3 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
-
-    def test_agregar_carrito_2(self):
-        carrito = []
-        libros = BookList.objects.all()
-        msj = agregarLibroAlCarrito(libros[0], carrito)
-        msj_esperado = 'Libro: Mitos Nordicos fue agregado al carrito'
-        self.assertEqual(msj_esperado, msj)
-
