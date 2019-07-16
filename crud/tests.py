@@ -57,7 +57,7 @@ class BookTestCase(TestCase):
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        libros = BookList.object.all()
+        libros = BookList.objects.all()
         suma = 0
         for x in libros:
             suma += x.price
