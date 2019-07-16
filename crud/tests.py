@@ -30,7 +30,7 @@ class BookTestCase(TestCase):
                                 price=info_libro[1],
                                 author=info_libro[2])
         precioOld = BookList.objects.get(title="Festin de Cuervos").price
-        book = BookList.objects.get(tittle="Festin de Cuervos")
+        book = BookList.objects.get(title="Festin de Cuervos")
         book.price = 100
         self.assertEqual(precioOld+60, book.price)
 
