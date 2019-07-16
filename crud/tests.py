@@ -34,7 +34,7 @@ class BookTestCase(TestCase):
     def test_eliminar_libro(self):
         book = BookList.objects.get(price = 90)
         book.delete()
-        new book = BookList.objects.filter(price = 90)
+        new_book = BookList.objects.filter(price = 90)
         exito = False
         if new_book :
             exito = True
