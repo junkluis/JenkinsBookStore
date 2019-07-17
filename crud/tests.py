@@ -70,10 +70,7 @@ class ViewsTestCase(TestCase):
 
    
 
-    def test_delete_view(self):
-        response = self.client.get(reverse("delete", kwargs={'id': 1}))
-        self.assertEqual(response.status_code, 302)
-
+   
 
 
 class FunctionsTestCase(TestCase):
@@ -109,3 +106,8 @@ class FunctionsTestCase(TestCase):
         esperado = 'No se encontraron resultados'
         mensaje, todoslibros = buscarLibrosPorAutor('Cristiano Ronaldo')
         self.assertEqual(esperado, mensaje)
+
+    def test_buscar_Libros2(self):
+        esperado = 'Se encontraron 3 resultados'
+        mensaje, todoslibros = buscarLibrosPorAutor("Luis Zuniga")
+        self.assertEqual("Se encontraron 3 resultados")
