@@ -34,11 +34,15 @@ class BookTestCase(TestCase):
         lista_libros_actualizado = len(BookList.objects.all())
         self.assertEqual(lista_libros-1, lista_libros_actualizado)
 
-    # def test_buscar_libro(self):
-    #   pass
+    def test_buscar_libro_result(self):
+        msj, books = buscar_libros_por_autor('Luis Zuniga')
+        msj_esperado = 'Se encontraron 1 resultados'
+        self.assertEqual(msj, msj_esperado)
 
-    # def test_libro_sin_precio(self):
-    #   pass
+    def test_buscar_libro_no_result(self):
+        msj, books = buscar_libros_por_autor('Miguel Sanchez')
+        msj_esperado = 'No se encontraron resultados'
+        self.assertEqual(msj, msj_esperado)
 
 
 class ViewsTestCase(TestCase):
