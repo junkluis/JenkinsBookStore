@@ -111,7 +111,7 @@ class FunctionsTestCase(TestCase):
             carrito.append(libro)
 
         resp = calcularSubTotalCarrito(carrito)
-        self.assertEqual(resp[0], 'El subtotal es: 210')
+        self.assertEqual(resp[0], 'El subtotal es: $210')
         self.assertEqual(resp[1], 210)
 
     def test_calcularSubTotalCarritoVacio(self):
