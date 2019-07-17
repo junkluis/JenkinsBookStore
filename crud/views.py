@@ -16,9 +16,10 @@ def index(request):
 
 def create(request):
     """Create book instance"""
-    title = request.GET['title']
-    price = request.GET['price']
-    author = request.GET['author']
+    # was GET, should be POST
+    title = request.POST['title']
+    price = request.POST['price']
+    author = request.POST['author']
     book_details = BookList(title=title, price=price, author=author)
     book_details.save()
     return redirect('/')

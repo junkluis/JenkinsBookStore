@@ -6,6 +6,7 @@ from .views import *
 
 # Create your tests here.
 
+import json
 
 class BookTestCase(TestCase):
     """Test Case class for book CRUD"""
@@ -83,26 +84,44 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    # def test_create_view(self):
-    #     data = {
-    #         "author": "Pablo Coehllo",
-    #         "price": 100,
-    #         "title": "No SE"
-    #     }
+    def test_create_view(self):
+        """Test create view and redirection """
+        data = {
+             "author": "Pablo Coehllo",
+             "price": 100,
+             "title": "No SE"
+        }
 
-    #     response = self.client.post(reverse('create'), data,
-    #                                     content_type='json')
-    #     self.assertEqual(response.status_code, 200)
+        response = self.client.post(reverse('create'), data) 
+        self.assertEqual(response.status_code, 302)
+        created = True
+        try:
+            book = BookList.objects.get(**data)
+        except BookList.DoesNotExist:
+            created = False
+
+        self.assertTrue(created)
 
 
-    # def test_add_view(self):
-    #   pass
+    def test_add_view(self):
+        """Render add form for book"""
+        response = self.client.get(reverse('add_book'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
 
     # def test_delete_view(self):
     #   pass
 
-    # def test_edit_view(self):
-    #   pass
+    def test_edit_view(self):
+        """Test rendering and template context for editting"""
+        book_to_edit = BookList.objects.create(title="Fire & Ice",
+                                                price=90,
+                                                author="Luis Zuniga")
+        response = self.client.get(reverse('edit', args=[book_to_edit.id]))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'edit.html')
+        self.assertEqual(book_to_edit, response.context['books'])
 
 
 class FunctionsTestCase(TestCase):
