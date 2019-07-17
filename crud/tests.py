@@ -48,6 +48,12 @@ class BookTestCase(TestCase):
 
 class ViewsTestCase(TestCase):
 
+    def setUp(self):
+        # Creamos un libro para las pruebas
+        BookList.objects.create(title="Fire & Ice",
+                                price=90,
+                                author="Luis Zuniga")
+
     # Prueba de una vista.
     def test_index_view(self):
         # response = self.client.get(reverse('index', args=[self.userName]))
@@ -59,19 +65,21 @@ class ViewsTestCase(TestCase):
         form_data = {"title": "1984", "price": 20, "author": "George Orwell"}
         response = self.client.get(reverse('create'), form_data)
 
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'add_book.html')
+        self.assertEqual(response.status_code, 302)
 
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
 
-    # def test_delete_view(self):
-    #   pass
+    def test_delete_view(self):
+        response = self.client.get("delete/1/")
+        self.assertEqual(response.status_code, 301)
 
-    # def test_edit_view(self):
-    #   pass
+    def test_edit_view(self):
+        response = self.client.get(reverse('edit'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'edit.html')
 
 
 class FunctionsTestCase(TestCase):
