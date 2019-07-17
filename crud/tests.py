@@ -88,6 +88,14 @@ class ViewsTestCase(TestCase):
         response = self.client.get(reverse('delete', args=(1, )))
         self.assertEqual(response.status_code, 302)
 
+    def test_delete_view_correct_data(self):
+        book_delete = BookList.objects.create(
+                                                title="Prueba Delete",
+                                                price=100,
+                                                author="Jose Masson")                                              
+        response = self.client.get(reverse('delete', args=[book_delete.id]))
+        self.assertEqual(response.status_code, 302)
+
     def test_edit_view(self):
         response = self.client.get(reverse("edit", args=(1, )))
         self.assertEqual(response.status_code, 200)
@@ -96,10 +104,8 @@ class ViewsTestCase(TestCase):
         new_book_edit = BookList.objects.create(
                                                 title="Prueba 2",
                                                 price=100,
-                                                author="Jose Masson")
-                                                
+                                                author="Jose Masson")                                
         response = self.client.get(reverse('edit', args=[new_book_edit.id]))
-    
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit.html')
         self.assertEqual(new_book_edit, response.context['books'])
