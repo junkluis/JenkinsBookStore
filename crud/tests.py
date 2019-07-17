@@ -105,6 +105,7 @@ class FunctionsTestCase(TestCase):
         libros = 0
         mensaje, subtotal = calcularSubTotalCarrito(libros)
         self.assertEqual(mensaje, 'No tiene libros en el carrito.')
+        self.assertEqual(subtotal, 0)
         
 
 
