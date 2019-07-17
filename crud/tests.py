@@ -42,7 +42,10 @@ class BookTestCase(TestCase):
             exito = True
         self.assertEqual(False, exito)
 
-   
+    def test_buscar_libro(self):
+       
+        libro = BookList.objects.get(title="Festin de Cuervos")
+        self.assertEqual("Festin de Cuervos", libro.title)
 
 
        
