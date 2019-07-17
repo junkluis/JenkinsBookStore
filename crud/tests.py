@@ -105,6 +105,6 @@ class FunctionsTestCase(TestCase):
                                               author="Charlie")
         for i in range(15):
 		    msj= agregarLibroAlCarrito(libro_prueba,carrito)
-       msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
-       self.assertEqual(msj_esperado,msj)    
+        msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
+        self.assertEqual(msj_esperado,msj)    
 
