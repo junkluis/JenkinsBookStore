@@ -95,6 +95,21 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
+
+
+    def test_agregar_carrito2(self):
+        comprar_libros = []
+        libros = BookList.objects.all()       
+        agregarLibroAlCarrito(libros[0], comprar_libros)
+        msj = agregarLibroAlCarrito(libros[0], comprar_libros)
+        msj_esperado = ('Solo puede ingresar hasta '
+                        'un maximo de 10 Libros al carrito')
+        self.assertEqual(msj_esperado, msj)
+
+
+
+
+
     def test_calcular_subtotal_carrito(self):
         libros = BookList.objects.all()
         msj, subtotal = calcularSubTotalCarrito(libros)
