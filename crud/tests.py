@@ -104,7 +104,7 @@ class FunctionsTestCase(TestCase):
         libros = BookList.objects.all()
 
         for i in range(11):
-            msj = agregarLibroAlCarrito(libros[3], carrito)
+            msj = agregarLibroAlCarrito(libros[1], carrito)
         msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
         self.assertEqual(msj, msj_esperado)
 
