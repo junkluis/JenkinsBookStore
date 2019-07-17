@@ -37,6 +37,7 @@ class BookTestCase(TestCase):
         self.assertEqual(title, book.title)
 
     def test_eliminar_libro(self):
+        a = False
         title = "Nuevo titulo"
         lista_libros = len(BookList.objects.all())
         info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
@@ -45,8 +46,11 @@ class BookTestCase(TestCase):
                                        author=info_libro[2])
         book.save()
         libro = BookList.objects.get(title=info_libro[0])
-		libro.delete()
-		libro = BookList.objects.get(title=info_libro[0])
+        libro.delete()
+        try:
+            libro = BookList.objects.get(title=info_libro[0])
+        except:
+            a = True
         self.assertEqual(None, book)
 
     # def test_eliminar_libro(self):
