@@ -111,4 +111,4 @@ class FunctionsTestCase(TestCase):
     def test_buscar_Libros(self):
         esperado = 'No hay'
         mensaje, todoslibros = buscarLibrosPorAutor('Cristiano Ronaldo')
-        self.assertEqual(esperado, msj)
+        self.assertEqual(esperado, mensaje)
