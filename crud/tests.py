@@ -46,10 +46,7 @@ class BookTestCase(TestCase):
             exito = True
         self.assertEqual(False, exito)
 
-    def test_buscar_libro(self):
-        mensaje = 'No hay'
-        mensaj2, todoslibros = test_buscar_libro('Fire & Ice')
-        self.assertEqual(mensaje, mensaje2)
+   
 
 
        
