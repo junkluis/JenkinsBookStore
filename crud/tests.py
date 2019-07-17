@@ -101,6 +101,17 @@ class FunctionsTestCase(TestCase):
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
 
+    def test_calcular_subtotal_carrito2(self):
+        libros = 0
+        mensaje, subtotal = calcularSubTotalCarrito(libros)
+        self.assertEqual(mensaje, 'No tiene libros en el carrito.')
+        
+
+
+
+
+
+
 
     def test_buscar_Libros(self):
         esperado = 'No se encontraron resultados'
