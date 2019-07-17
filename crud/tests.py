@@ -61,13 +61,13 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
 
-    def test_delete_view(self):
-        response = self.client.get(reverse('delete', args=(1, )))
-        self.assertEqual(response.status_code, 302)
+    #def test_delete_view(self):
+    #    response = self.client.get(reverse('delete', args=(1, )))
+    #    self.assertEqual(response.status_code, 302)
 
-    def test_edit_view(self):
-        response = self.client.get(reverse("edit", args=(1, )))
-        self.assertEqual(response.status_code, 200)
+    #def test_edit_view(self):
+    #    response = self.client.get(reverse("edit", args=(1, )))
+    #    self.assertEqual(response.status_code, 200)
 
 
 class FunctionsTestCase(TestCase):
