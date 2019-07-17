@@ -56,9 +56,11 @@ class ViewsTestCase(TestCase):
     # def test_create_view(self):
     #   pass
 
-    # def test_add_view(self):
-    #   pass
-
+    def test_add_view(self):
+        response = self.client.get(reverse('add_book'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
+        
     # def test_delete_view(self):
     #   pass
 
@@ -69,7 +71,7 @@ class ViewsTestCase(TestCase):
                                 author=info_libro[2])
         response = self.client.get(reverse("edit", args=(1,)))
         self.assertEqual(response.status_code, 200)
-        
+
 class FunctionsTestCase(TestCase):
 
     def setUp(self):
