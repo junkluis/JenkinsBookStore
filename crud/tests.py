@@ -5,7 +5,6 @@ from django.urls import reverse
 from .models import BookList
 from .views import *
 
-# Create your tests here.
 
 class BookTestCase(TestCase):
     """Test Case class for book CRUD"""
