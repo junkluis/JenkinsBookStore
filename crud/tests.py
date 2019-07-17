@@ -79,6 +79,20 @@ class ViewsTestCase(TestCase):
                                     })
         self.assertEqual(response.status_code, 302)
 
+    def test_update_view_correct_data(self):
+        book_update = BookList.objects.create(
+                                                title="Prueba UPDATE",
+                                                price=100,
+                                                author="Jose Masson")                                
+        response = self.client.get(
+                                    reverse('update', args=[book_update.id]),
+                                    {
+                                        "title": book_update.title,
+                                        "price": 180,
+                                        "author": book_update.author
+                                    })
+        self.assertEqual(response.status_code, 302)
+
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
