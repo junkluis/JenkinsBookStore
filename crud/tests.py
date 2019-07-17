@@ -92,6 +92,18 @@ class ViewsTestCase(TestCase):
         response = self.client.get(reverse("edit", args=(1, )))
         self.assertEqual(response.status_code, 200)
 
+    def test_edit_view_correct_data(self):
+        new_book_edit = BookList.objects.create(
+                                                title="Prueba 2",
+                                                price=100,
+                                                author="Jose Masson")
+                                                
+        response = self.client.get(reverse('edit', args=[new_book_edit.id]))
+    
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'edit.html')
+        self.assertEqual(new_book_edit, response.context['books'])
+
 
 class FunctionsTestCase(TestCase):
 
