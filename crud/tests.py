@@ -43,12 +43,20 @@ class BookTestCase(TestCase):
         self.assertEqual(False, exito)
 
     def test_buscar_libro(self):
-       
-        libro = BookList.objects.get(title="Festin de Cuervos")
-        self.assertEqual("Festin de Cuervos", libro.title)
+        libro_nuevo= ["Software", 100, "Luis Mora"]
+        book = BookList.objects.create(title=libro_nuevo[0],price=libro_nuevo[1],author=libro_nuevo[2])
+        book.save()
+        libro = BookList.objects.get(title="Software")
+        self.assertEqual("Software", libro.title)
 
 
-       
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        book = BookList.objects.create(title=info_libro[0],
+                                       price=info_libro[1],
+                                       author=info_libro[2])
+        book.save()
+        libro = BookList.objects.get(title=info_libro[0])
+        self.assertEqual(info_libro[0], libro.title)
 
 
 
