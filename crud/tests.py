@@ -13,6 +13,7 @@ class BookTestCase(TestCase):
                                 price=90,
                                 author="Luis Zuniga")
 
+
     def test_crear_nuevo_libro(self):
 
         lista_libros = len(BookList.objects.all())
@@ -21,7 +22,6 @@ class BookTestCase(TestCase):
                                 price=info_libro[1],
                                 author=info_libro[2])
         lista_libros_actualizado = len(BookList.objects.all())
-
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
 
@@ -31,7 +31,6 @@ class BookTestCase(TestCase):
 	    libro = BookList.objects.get(title=titulo)
 	    libro.author = "John Cuesta"
 	    libro.save(update_fields=['author'])
-
 	    self.assertEqual(libro.author, "John Cuesta")
 	#   pass
 
@@ -44,11 +43,13 @@ class BookTestCase(TestCase):
 	    existe_libro = BookList.objects.filter(title=titulo)
 	    if existe_libro:
 		    eliminado = False
-
 	    self.assertEqual(True, eliminado)
 	#   pass
 
-    # def test_buscar_libro(self):
+
+    
+    #def test_buscar_libro(self):
+
     #   pass
 
     # def test_libro_sin_precio(self):
@@ -64,7 +65,16 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    # def test_create_view(self):
+    def test_create_view(self):
+        response = self.client.get(
+            reverse('create'),
+            {
+                "title": "1984",
+                "price": 50,
+                "author": "George Orwell"
+            }
+        )
+        self.assertEqual(response.status_code, 302)
     #   pass
 
     # def test_add_view(self):
