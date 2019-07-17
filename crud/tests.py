@@ -37,12 +37,6 @@ class BookTestCase(TestCase):
         book.save()
         self.assertEqual(title, book.title)
 
-#def test_eliminar_libro(self):
-
-#def test_buscar_libro(self):
-
-#def test_libro_sin_precio(self):
-
 
 class ViewsTestCase(TestCase):
 
@@ -149,3 +143,27 @@ class FunctionsTestCase(TestCase):
         msj_text = 'El subtotal es: $'+str(libro_prueba.price)
         msj_esperado = (msj_text, libro_prueba.price)
         self.assertEqual(msj_esperado, msj)
+
+    def test_calcular_subtotal_carrito_cero(self):
+        carrito = 0
+        msj = calcularSubTotalCarrito(carrito)
+        msj_text = 'No tiene libros en el carrito.'
+        msj_esperado = (msj_text, 0)
+        self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libro_sin_resultados(self):
+        autor = "Autor 1"
+        msj = buscarLibrosPorAutor(autor)
+        msj_text = 'No se encontraron resultados'
+        msj_esperado = (msj_text, BookList.objects.none())
+        self.assertEqual(msj_esperado[0], msj[0])
+
+    def test_buscar_libro_con_resultados(self):
+        autor = "Autor 1"
+        BookList.objects.create(title="Libro 1",
+                                price=20,
+                                author=autor)
+        msj = buscarLibrosPorAutor(autor)
+        msj_text = 'Se encontraron '+str(1)+' resultados'
+        msj_esperado = (msj_text, [])
+        self.assertEqual(msj_esperado[0], msj[0])
