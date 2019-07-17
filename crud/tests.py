@@ -92,6 +92,15 @@ class FunctionsTestCase(TestCase):
         carrito = []
         libros = BookList.objects.all()
         msj = agregarLibroAlCarrito(libros[0], carrito)
+        msj = agregarLibroAlCarrito(libros[1], carrito)
+        msj = agregarLibroAlCarrito(libros[2], carrito)
+        msj = agregarLibroAlCarrito(libros[3], carrito)
+        msj = agregarLibroAlCarrito(libros[4], carrito)
+        msj = agregarLibroAlCarrito(libros[5], carrito)
+        msj = agregarLibroAlCarrito(libros[6], carrito)
+        msj = agregarLibroAlCarrito(libros[7], carrito)
+        msj = agregarLibroAlCarrito(libros[8], carrito)
+        msj = agregarLibroAlCarrito(libros[9], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
