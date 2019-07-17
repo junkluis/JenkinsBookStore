@@ -26,10 +26,6 @@ class BookTestCase(TestCase):
 
     def test_editar_libro(self):
 
-        #book.title = "dani"
-        #book.save(update_fields=["title"])
-        #self.assertEqual("dani", book.title)
-
 
         book = BookList.objects.get(price=90)
         book.title = "software"
@@ -53,8 +49,6 @@ class BookTestCase(TestCase):
 
 
 
-    #def test_libro_sin_precio(self):
-    #   pass
 
 
 class ViewsTestCase(TestCase):
@@ -103,8 +97,7 @@ class FunctionsTestCase(TestCase):
         for i in range(10):       
             agregarLibroAlCarrito(libros[0], comprar_libros)
         msj = agregarLibroAlCarrito(libros[0], comprar_libros)
-        msj_esperado = ('Solo puede ingresar hasta '
-                        'un maximo de 10 Libros al carrito')
+        msj_esperado = ('Solo puede ingresar hasta un maximo de 10 Libros al carrito')
         self.assertEqual(msj_esperado, msj)
 
 
@@ -122,12 +115,6 @@ class FunctionsTestCase(TestCase):
         mensaje, subtotal = calcularSubTotalCarrito(libros)
         self.assertEqual(mensaje, 'No tiene libros en el carrito.')
         self.assertEqual(subtotal, 0)
-        
-
-
-
-
-
 
 
     def test_buscar_Libros(self):
