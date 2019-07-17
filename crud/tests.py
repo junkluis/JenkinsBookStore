@@ -26,7 +26,7 @@ class BookTestCase(TestCase):
 
     def test_str_is_equal_to_title(self):
         libro = BookList.objects.get(title="Fire & Ice")
-        self.assertEqual(str(libro), work.libro)
+        self.assertEqual(str(libro), libro.title)
 
     def test_editar_libro(self):
         BookList.objects.filter(title="Fire & Ice").update(price=50)
