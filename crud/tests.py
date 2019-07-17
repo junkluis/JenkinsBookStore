@@ -114,9 +114,9 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
         self.assertEqual(msj_esperado, msj)
 
-    def test_agregar_carrito_maximo(self):
+    def test_agregar_carrito_no_libro(self):
         carrito = []
-        libro = NULL
+        libro = None
         msj = agregarLibroAlCarrito(libro, carrito)
         msj_esperado = 'Err: No hay ningun libro'
         self.assertEqual(msj_esperado, msj)
