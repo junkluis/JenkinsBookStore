@@ -66,17 +66,14 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-    # def test_create_view(self):
-    #   pass
+   
 
-    # def test_add_view(self):
-    #   pass
+   
 
-    # def test_delete_view(self):
-    #   pass
+    def test_delete_view(self):
+        response = self.client.get(reverse("delete", kwargs={'id': 1}))
+        self.assertEqual(response.status_code, 302)
 
-    # def test_edit_view(self):
-    #   pass
 
 
 class FunctionsTestCase(TestCase):
