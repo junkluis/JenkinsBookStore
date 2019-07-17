@@ -12,6 +12,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 def create(request):
+    
     title = request.GET['title']
     price = request.GET['price']
     author = request.GET['author']

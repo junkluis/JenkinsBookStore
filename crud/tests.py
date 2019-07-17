@@ -72,11 +72,12 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     #def test_create_view(self):
-    #    response = self.client.get(reverse('create'))
+    #    response = self.client.post(reverse('create'))
     #    self.assertEqual(response.status_code, 200)
-    #   self.assertTemplateUsed(response, '')
+        #self.assertTemplateUsed(response, '')
 
     def test_add_view(self):
+
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
@@ -86,10 +87,8 @@ class ViewsTestCase(TestCase):
     #   pass
 
     #def test_edit_view(self):
-    #    response = self.client.get(reverse('edit'))
-    #    self.assertEqual(response.status_code, 200)
-    #    self.assertTemplateUsed(response, 'edit.html')
     #   pass
+
 
 
 class FunctionsTestCase(TestCase):
@@ -114,10 +113,16 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
-    def test_buscar_libros_autor(self):
+    def test_buscar_libros_autor_existente(self):
         nombre = "Luis Zuniga"
         msj , subtotal = buscarLibrosPorAutor(nombre)
         msj_esperado = 'Se encontraron 3 resultados'
+        self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libros_autor_inexistente(self):
+        nombre = "No existe este men"
+        msj , subtotal = buscarLibrosPorAutor(nombre)
+        msj_esperado = 'No se encontraron resultados'
         self.assertEqual(msj_esperado, msj)
 
     def test_calcular_subtotal_carrito(self):
