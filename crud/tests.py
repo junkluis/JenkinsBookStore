@@ -31,7 +31,7 @@ class BookTestCase(TestCase):
         #self.assertEqual("dani", book.title)
 
 
-         book = BookList.objects.get(price=90)
+        book = BookList.objects.get(price=90)
         book.title = "Snow"
         book.save(update_fields=["title"])
         self.assertEqual("Snow", book.title)
