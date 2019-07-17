@@ -62,7 +62,7 @@ class ViewsTestCase(TestCase):
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        response = self.client.get(reverse("delete",args=(1,)))
+        response = self.client.get(reverse("delete", args=(1,)))
         self.assertEqual(response.status_code, 302)
 
     def test_edit_view(self):
@@ -70,7 +70,7 @@ class ViewsTestCase(TestCase):
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        response = self.client.get(reverse("edit",args=(1,)))
+        response = self.client.get(reverse("edit", args=(1,)))
         self.assertEqual(response.status_code, 200)
 
     def test_update_view(self):
@@ -79,7 +79,7 @@ class ViewsTestCase(TestCase):
         BookList.objects.create(title=info_libro[0],
                                 price=info_libro[1],
                                 author=info_libro[2])
-        response = self.client.get(reverse("update",args=(1,)),data)
+        response = self.client.get(reverse("update", args=(1,)), data)
         self.assertEqual(response.status_code, 302)
 
 
@@ -112,7 +112,8 @@ class FunctionsTestCase(TestCase):
                                                price=20,
                                                author="MAuricio Leiton")
         msj = agregarLibroAlCarrito(libro_prueba, carrito)
-        msj_esperado = 'Libro: '+(libro_prueba.title)+' fue agregado al carrito'
+        msj_esperado = 'Libro: '+(libro_prueba.title)+ \
+                       ' fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
     def test_agregar_carrito_no_libro(self):
@@ -131,7 +132,8 @@ class FunctionsTestCase(TestCase):
                                                author="MAuricio Leiton")
         for i in range(10):
             msj = agregarLibroAlCarrito(libro_prueba, carrito)
-        msj_esperado = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
+        msj_esperado = 'Solo puede ingresar hasta ' \
+                       'un maximo de 10 Libros al carrito'
         self.assertEqual(msj_esperado, msj)
 
     def test_calcular_subtotal_carrito_vacio(self):
