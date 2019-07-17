@@ -119,8 +119,13 @@ class FunctionsTestCase(TestCase):
         subtotal_esperado = 0
         self.assertEqual(subtotal, subtotal_esperado)
 
-    def test_buscar_Libros_Xautor(self):
-        msj_espera = 'No se encontraron resultados'
-        msj, libros = buscarLibrosPorAutor('Richard Robayo')
-        self.assertEqual(msj_espera,msj) 
+    def test_buscar_libros_por_autor_inexistente(self):
+        msj_esperado = "No se encontraron resultados"
+        msj, todosLibros = buscarLibrosPorAutor('Pedro Joaquin')
+        self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libros_por_autor_existente(self):
+        msj_esperado = "Se encontraron 3 resultados"
+        msj, libros = buscarLibrosPorAutor('Luis Zuniga')
+        self.assertEqual(msj_esperado, msj)
         
