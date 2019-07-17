@@ -53,6 +53,14 @@ class BookTestCase(TestCase):
             a = True
         self.assertEqual(True, a)
 
+    def test_buscar_libro(self):
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        book = BookList.objects.create(title=info_libro[0],
+                                       price=info_libro[1],
+                                       author=info_libro[2])
+        book.save()
+        libro = BookList.objects.get(title=info_libro[0])
+        self.assertEqual(info_libro[0], libro.title)
     # def test_eliminar_libro(self):
     #   pass
 
