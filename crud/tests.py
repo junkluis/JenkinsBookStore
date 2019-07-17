@@ -49,7 +49,7 @@ class BookTestCase(TestCase):
         libro = BookList.objects.get(title="Software")
         self.assertEqual("Software", libro.title)
 
-    def test_libro_sinprecio(self):
+  
 
 
 
