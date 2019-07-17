@@ -47,10 +47,12 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        response = self.client.get(reverse('create'),{"title":"pruebita","price": 40,"author":"Charlie"})
+        response = self.client.get(reverse('create'), {"title":"pruebita", 
+                                                      "price":40, 
+                                                      "author":"Charlie"})
         self.assertEqual(response.status_code, 302)
     #   pass
-
+	
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
@@ -90,13 +92,13 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito(self):
         carrito = []
         libros = BookList.objects.all()
-        libro_prueba = BookList.objects.create(title= "Libro 1",
-                                              price=20,
+        libro_prueba = BookList.objects.create(title="Libro 1", 
+                                              price=20, 
                                               author="Charlie")
         msj = agregarLibroAlCarrito(libro_prueba, carrito)
         msj_esperado = 'Libro: ' + (libro_prueba.title)+ ' fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
-
+	# Prueba de una vista.
     def test_agregar_carrito_max(self):
         carrito = [BookList.objects.all()]
         libros = BookList.objects.all()
@@ -104,7 +106,7 @@ class FunctionsTestCase(TestCase):
                                               price=20,
                                               author="Charlie")
         for i in range(15):
-			msj= agregarLibroAlCarrito(libro_prueba, carrito)
-		msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
+            msj= agregarLibroAlCarrito(libro_prueba, carrito)
+        msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
         self.assertEqual(msj_esperado,msj)    
 
