@@ -24,6 +24,10 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
+    def test_str_is_equal_to_title(self):
+        libro = BookList.objects.get(title="Fire & Ice")
+        self.assertEqual(str(libro), work.libro)
+
     def test_editar_libro(self):
         BookList.objects.filter(title="Fire & Ice").update(price=50)
         libro = BookList.objects.get(title="Fire & Ice")
@@ -74,6 +78,11 @@ class ViewsTestCase(TestCase):
 
     def test_delete_view(self):
         response = self.client.get(reverse("delete", kwargs={'id': 1}))
+        self.assertEqual(response.status_code, 302)
+
+    def test_update_view(self):
+        form_data = {"title": "1984", "price": 20, "author": "George Orwell"}
+        response = self.client.get(reverse("delete", kwargs={'id': 1}), form_data)
         self.assertEqual(response.status_code, 302)
 
     def test_edit_view(self):
@@ -136,6 +145,11 @@ class FunctionsTestCase(TestCase):
         resp = calcularSubTotalCarrito(carrito)
         self.assertEqual(resp[0], 'No tiene libros en el carrito.')
         self.assertEqual(resp[1], 0)
+
+    def test_buscarlibrosPorAutor(self):
+        autor = "Luis Zuniga"
+        resp = buscarLibrosPorAutor(autor)
+        self.assertEqual(resp[0], "Se encontraron 3 resultados")
 
     def test_buscarlibrosPorAutorNoResultados(self):
         autor = "Anibal Gamboa"
