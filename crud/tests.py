@@ -92,15 +92,6 @@ class FunctionsTestCase(TestCase):
         carrito = []
         libros = BookList.objects.all()
         msj = agregarLibroAlCarrito(libros[0], carrito)
-        msj = agregarLibroAlCarrito(libros[1], carrito)
-        msj = agregarLibroAlCarrito(libros[2], carrito)
-        msj = agregarLibroAlCarrito(libros[3], carrito)
-        msj = agregarLibroAlCarrito(libros[4], carrito)
-        msj = agregarLibroAlCarrito(libros[5], carrito)
-        msj = agregarLibroAlCarrito(libros[6], carrito)
-        msj = agregarLibroAlCarrito(libros[7], carrito)
-        msj = agregarLibroAlCarrito(libros[8], carrito)
-        msj = agregarLibroAlCarrito(libros[9], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
@@ -108,8 +99,9 @@ class FunctionsTestCase(TestCase):
 
     def test_agregar_carrito2(self):
         comprar_libros = []
-        libros = BookList.objects.all()       
-        agregarLibroAlCarrito(libros[0], comprar_libros)
+        libros = BookList.objects.all()
+        for i in range(10):       
+            agregarLibroAlCarrito(libros[0], comprar_libros)
         msj = agregarLibroAlCarrito(libros[0], comprar_libros)
         msj_esperado = ('Solo puede ingresar hasta '
                         'un maximo de 10 Libros al carrito')
