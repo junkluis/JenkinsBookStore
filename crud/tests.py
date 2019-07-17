@@ -106,3 +106,10 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'No se encontraron resultados'
         msj, todoslibros = buscarLibrosPorAutor('Andres Cepeda')
         self.assertEqual(msj_esperado, msj)
+
+    def test_buscar_libro_sin_resultados(self):
+        autor = "Autor 1"
+        msj = buscarLibrosPorAutor(autor)
+        msj_text = 'No se encontraron resultados'
+        msj_esperado = (msj_text, BookList.objects.none())
+        self.assertEqual(msj_esperado[0], msj[0])
