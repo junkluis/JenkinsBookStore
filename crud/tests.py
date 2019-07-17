@@ -110,4 +110,4 @@ class FunctionsTestCase(TestCase):
     def test_buscar_Libros2(self):
         esperado = 'Se encontraron 3 resultados'
         mensaje, todoslibros = buscarLibrosPorAutor("Luis Zuniga")
-        self.assertEqual("Se encontraron 3 resultados")
+        self.assertEqual(esperado,"Se encontraron 3 resultados")
