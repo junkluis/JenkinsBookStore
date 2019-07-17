@@ -105,6 +105,20 @@ class FunctionsTestCase(TestCase):
         subtotal_espera = 210
         self.assertEqual(subtotal_espera,subt)
 
+    def test_calcular_sub_carrito_vacio_mensaje(self):
+        carrito = 0
+        msj, subtotal = calcularSubTotalCarrito(carrito)
+        msj_esperado = 'No tiene libros en el carrito.'
+        subtotal_esperado = 0
+        self.assertEqual(msj, msj_esperado)
+
+    def test_calcular_sub_carrito_vacio_valor(self):
+        carrito = 0
+        msj, subtotal = calcularSubTotalCarrito(carrito)
+        msj_esperado = 'No tiene libros en el carrito.'
+        subtotal_esperado = 0
+        self.assertEqual(subtotal, subtotal_esperado)
+
     def test_buscar_Libros_Xautor(self):
         msj_espera = 'No se encontraron resultados'
         msj, libros = buscarLibrosPorAutor('Richard Robayo')
