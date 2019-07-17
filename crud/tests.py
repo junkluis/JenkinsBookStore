@@ -26,9 +26,9 @@ class BookTestCase(TestCase):
 
     def test_editar_libro(self):
 
-        book.title = "Fire & Ice"
+        book.title = "dani"
         book.save(update_fields=["title"])
-        self.assertEqual("Festin de Cuervos", book.title)
+        self.assertEqual("dani", book.title)
 
 
     def test_eliminar_libro(self):
