@@ -40,14 +40,15 @@ class BookTestCase(TestCase):
             exito = True
         self.assertEqual(False, exito)
 
-
+    def test_buscar_libro(self):
+        mensaje = 'No hay'
+        mensaj2, todoslibros = test_buscar_libro('Festin de Cuervos')
+        self.assertEqual(mensaje, mensaje2)
 
 
        
 
-  #  def test_buscar_libro(self):
-   #     BookList.objects.filter(title="Festin de Cuervos").read()
-    #    self.assertEqual()
+
 
     #def test_libro_sin_precio(self):
     #   pass
@@ -96,3 +97,9 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
+
+    def testcalculartotal(self):
+        libro = BookList.objects.all()
+        mensaje, total = calcularSubTotalCarrito(libro)
+        resultado_esperado = 210
+        self.assertEqual(resultado_esperado, total)
