@@ -51,7 +51,7 @@ class BookTestCase(TestCase):
             libro = BookList.objects.get(title=info_libro[0])
         except:
             a = True
-        self.assertEqual(None, book)
+        self.assertEqual(True, a)
 
     # def test_eliminar_libro(self):
     #   pass
