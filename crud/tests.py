@@ -92,6 +92,13 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
+    def test_agregar_libro_incorrecto(self):
+        carrito = []
+        libros = []
+        msj = agregarLibroAlCarrito(libros, carrito)
+        msj_esperado = 'Err: No hay ningun libro'
+        self.assertEqual(msj, msj_esperado)
+
     def test_calcular_subcarrito(self):
         books = BookList.objects.all()
         mensajes,subt = calcularSubTotalCarrito(books)
