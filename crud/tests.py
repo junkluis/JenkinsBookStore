@@ -49,14 +49,9 @@ class BookTestCase(TestCase):
         libro = BookList.objects.get(title="Software")
         self.assertEqual("Software", libro.title)
 
+    def test_libro_sinprecio(self):
 
-        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
-        book = BookList.objects.create(title=info_libro[0],
-                                       price=info_libro[1],
-                                       author=info_libro[2])
-        book.save()
-        libro = BookList.objects.get(title=info_libro[0])
-        self.assertEqual(info_libro[0], libro.title)
+
 
 
 
@@ -71,7 +66,11 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-   
+    def test_add_view(self):
+
+        response = self.client.get(reverse('add_book'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'add_book.html')
 
    
 
