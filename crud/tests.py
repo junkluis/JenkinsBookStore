@@ -47,32 +47,40 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
-
     def test_create_view(self):
         data = {"title": "dfdf", "price": 40, "author": "dsfd"}
         response = self.client.get(reverse('create'), data)
         self.assertEqual(response.status_code, 302)
-
 
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
 
-
     def test_delete_view(self):
-        response = self.client.get("/delete/1")
-        self.assertEqual(response.status_code, 301)
-
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        response = self.client.get(reverse("delete",args=(1,)))
+        self.assertEqual(response.status_code, 302)
 
     def test_edit_view(self):
-        response = self.client.get("/edit/1")
-        self.assertEqual(response.status_code, 301)
-
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        response = self.client.get(reverse("edit",args=(1,)))
+        self.assertEqual(response.status_code, 200)
 
     def test_update_view(self):
-        response = self.client.get("/update/1")
-        self.assertEqual(response.status_code, 301)
+        data = {"title": "dfdf", "price": 40, "author": "dsfd"}
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        response = self.client.get(reverse("update",args=(1,)),data)
+        self.assertEqual(response.status_code, 302)
 
 
 class FunctionsTestCase(TestCase):
@@ -138,6 +146,7 @@ class FunctionsTestCase(TestCase):
         libro_prueba = BookList.objects.create(title="Libro 1",
                                                price=20,
                                                author="MAuricio Leiton")
+        print(libro_prueba)
         agregarLibroAlCarrito(libro_prueba, carrito)
         msj = calcularSubTotalCarrito(carrito)
         msj_text = 'El subtotal es: $'+str(libro_prueba.price)

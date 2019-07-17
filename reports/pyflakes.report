@@ -1,17 +1,17 @@
 crud/tests.py:4: [E] PYFLAKES:'from .views import *' used; unable to detect undefined names
 crud/tests.py:30: [E] PYFLAKES:local variable 'lista_libros' is assigned to but never used
-crud/tests.py:88: [E] PYFLAKES:local variable 'libro_prueba' is assigned to but never used
-crud/tests.py:96: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:102: [E] PYFLAKES:local variable 'libros' is assigned to but never used
-crud/tests.py:106: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:112: [E] PYFLAKES:local variable 'libros' is assigned to but never used
-crud/tests.py:114: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:120: [E] PYFLAKES:local variable 'libros' is assigned to but never used
-crud/tests.py:125: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:131: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:141: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:142: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:149: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:156: [E] PYFLAKES:'buscarLibrosPorAutor' may be undefined, or defined from star imports: [E] PYFLAKES:.views
-crud/tests.py:166: [E] PYFLAKES:'buscarLibrosPorAutor' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:101: [E] PYFLAKES:local variable 'libro_prueba' is assigned to but never used
+crud/tests.py:109: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:115: [E] PYFLAKES:local variable 'libros' is assigned to but never used
+crud/tests.py:119: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:125: [E] PYFLAKES:local variable 'libros' is assigned to but never used
+crud/tests.py:127: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:133: [E] PYFLAKES:local variable 'libros' is assigned to but never used
+crud/tests.py:138: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:144: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:155: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:156: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:163: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:170: [E] PYFLAKES:'buscarLibrosPorAutor' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud/tests.py:180: [E] PYFLAKES:'buscarLibrosPorAutor' may be undefined, or defined from star imports: [E] PYFLAKES:.views
 crud/views.py:1: [E] PYFLAKES:'django.shortcuts.HttpResponse' imported but unused

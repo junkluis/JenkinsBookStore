@@ -1,9 +1,13 @@
 crud/tests.py:51:5: E303 too many blank lines (2)
 crud/tests.py:57:5: E303 too many blank lines (2)
 crud/tests.py:63:5: E303 too many blank lines (2)
-crud/tests.py:68:5: E303 too many blank lines (2)
-crud/tests.py:73:5: E303 too many blank lines (2)
-crud/tests.py:107:80: E501 line too long (80 > 79 characters)
-crud/tests.py:126:80: E501 line too long (84 > 79 characters)
-crud/tests.py:169:50: W292 no newline at end of file
+crud/tests.py:68:52: E231 missing whitespace after ','
+crud/tests.py:72:5: E303 too many blank lines (2)
+crud/tests.py:77:50: E231 missing whitespace after ','
+crud/tests.py:81:5: E303 too many blank lines (2)
+crud/tests.py:87:52: E231 missing whitespace after ','
+crud/tests.py:87:63: E231 missing whitespace after ','
+crud/tests.py:120:80: E501 line too long (80 > 79 characters)
+crud/tests.py:139:80: E501 line too long (84 > 79 characters)
+crud/tests.py:183:50: W292 no newline at end of file
 crud/migrations/0001_initial.py:17:80: E501 line too long (114 > 79 characters)
