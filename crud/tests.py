@@ -1,12 +1,11 @@
 """Definition of tests for app crud"""
+import json
 from django.test import TestCase
 from django.urls import reverse
 from .models import BookList
 from .views import *
 
 # Create your tests here.
-
-import json
 
 class BookTestCase(TestCase):
     """Test Case class for book CRUD"""
@@ -19,14 +18,14 @@ class BookTestCase(TestCase):
                                 author="Luis Zuniga")
 
     def test_crear_nuevo_libro(self):
-       """Test create new book"""
-       lista_libros = len(BookList.objects.all())
-       info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
-       BookList.objects.create(title=info_libro[0],
-                               price=info_libro[1],
-                               author=info_libro[2])
-       lista_libros_actualizado = len(BookList.objects.all())
-       self.assertEqual(lista_libros + 1, lista_libros_actualizado)
+        """Test create new book"""
+        lista_libros = len(BookList.objects.all())
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        lista_libros_actualizado = len(BookList.objects.all())
+        self.assertEqual(lista_libros + 1, lista_libros_actualizado)
 
     def test_editar_libro(self):
         """ Prueba de actualizar campos"""
@@ -54,7 +53,7 @@ class BookTestCase(TestCase):
     def test_buscar_libro(self):
 
         params_busqueda = {
-            'title':"Fire & Ice",
+            'title': "Fire & Ice",
             'price': 90,
             'author': "Luis Zuniga"
         }
@@ -87,12 +86,12 @@ class ViewsTestCase(TestCase):
     def test_create_view(self):
         """Test create view and redirection """
         data = {
-             "author": "Pablo Coehllo",
-             "price": 100,
-             "title": "No SE"
+            "author": "Pablo Coehllo",
+            "price": 100,
+            "title": "No SE"
         }
 
-        response = self.client.post(reverse('create'), data) 
+        response = self.client.post(reverse('create'), data)
         self.assertEqual(response.status_code, 302)
         created = True
         try:
@@ -101,7 +100,6 @@ class ViewsTestCase(TestCase):
             created = False
 
         self.assertTrue(created)
-
 
     def test_add_view(self):
         """Render add form for book"""
@@ -115,8 +113,8 @@ class ViewsTestCase(TestCase):
     def test_edit_view(self):
         """Test rendering and template context for editting"""
         book_to_edit = BookList.objects.create(title="Fire & Ice",
-                                                price=90,
-                                                author="Luis Zuniga")
+                                               price=90,
+                                               author="Luis Zuniga")
         response = self.client.get(reverse('edit', args=[book_to_edit.id]))
 
         self.assertEqual(response.status_code, 200)
@@ -161,13 +159,13 @@ class FunctionsTestCase(TestCase):
     def test_demasiados_libros_en_carrito(self):
         """Test for trying to add more than 10 books to cart"""
         for i in range(11):
-            title="Bears are Cool".format(i)
+            title = "Bears are Cool".format(i)
             libro_prueba = BookList.objects.create(title=title,
-                                                    price=(i + 1) * 10,
-                                                    author="Alex Arktos")
+                                                   price=(i + 1) * 10,
+                                                   author="Alex Arktos")
         carrito = []
         msj_esperado = 'Solo puede ingresar hasta un maximo de 10 ' +\
-                        'Libros al carrito'
+            'Libros al carrito'
         msj = ''
         books = list(BookList.objects.filter(author="Alex Arktos"))[:11]
 
@@ -176,7 +174,6 @@ class FunctionsTestCase(TestCase):
 
         self.assertEqual(11, len(books))
         self.assertEqual(msj_esperado, msj)
-
 
     def test_calcular_subtotal(self):
         """ Test subtotal calculation"""
@@ -208,4 +205,3 @@ class FunctionsTestCase(TestCase):
 
         self.assertEqual(msj_esperado, msj)
         self.assertEqual(total, libros.count())
-
