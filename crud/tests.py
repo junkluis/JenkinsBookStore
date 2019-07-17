@@ -24,8 +24,28 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
-    #   pass
+    def test_editar_libro(self):
+        title = "Nuevo titulo"
+        lista_libros = len(BookList.objects.all())
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        book = BookList.objects.create(title=info_libro[0],
+                                       price=info_libro[1],
+                                       author=info_libro[2])
+        book.save()
+        book.title = title
+        book.save()
+        self.assertEqual(title, book.title)
+
+    def test_eliminar_libro(self):
+        title = "Nuevo titulo"
+        lista_libros = len(BookList.objects.all())
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        book = BookList.objects.create(title=info_libro[0],
+                                       price=info_libro[1],
+                                       author=info_libro[2])
+        book.save()
+        book.delete()
+        self.assertEqual(None, book)
 
     # def test_eliminar_libro(self):
     #   pass
