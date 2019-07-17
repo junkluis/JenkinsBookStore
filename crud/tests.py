@@ -76,7 +76,6 @@ class ViewsTestCase(TestCase):
             })
         self.assertEqual(response.status_code, 302)
 
-
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
         self.assertEqual(response.status_code, 200)
