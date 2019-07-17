@@ -74,7 +74,7 @@ class ViewsTestCase(TestCase):
 
     def test_delete_view(self):
         response = self.client.get(reverse("delete", kwargs={'id': 1}))
-        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response.status_code, 302)
 
     def test_edit_view(self):
         response = self.client.get(reverse('edit', kwargs={'id': 1}))
@@ -111,16 +111,16 @@ class FunctionsTestCase(TestCase):
             carrito.append(libro)
 
         resp = calcularSubTotalCarrito(carrito)
-        assertEqual(resp[0], 'El subtotal es: 210')
-        assertEqual(resp[1], 210)
+        self.assertEqual(resp[0], 'El subtotal es: 210')
+        self.assertEqual(resp[1], 210)
 
     def test_calcularSubTotalCarritoVacio(self):
         carrito = []
         resp = calcularSubTotalCarrito(carrito)
-        assertEqual(resp[0], 'No tiene libros en el carrito.')
-        assertEqual(resp[1], 0)
+        self.assertEqual(resp[0], 'No tiene libros en el carrito.')
+        self.assertEqual(resp[1], 0)
 
     def test_buscarlibrosPorAutorNoResultados(self):
         autor = "Anibal Gamboa"
         resp = buscarLibrosPorAutor(autor)
-        assertEqual(resp[0], 'No se encontraron resultados')
+        self.assertEqual(resp[0], 'No se encontraron resultados')
