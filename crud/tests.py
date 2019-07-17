@@ -107,9 +107,20 @@ class FunctionsTestCase(TestCase):
     def test_calcularSubTotalCarrito(self):
         carrito = []
         libros = BookList.objects.all()
-        For libro in libros:
+        for libro in libros:
             carrito.append(libro)
 
         resp = calcularSubTotalCarrito(carrito)
         assertEqual(resp[0], 'El subtotal es: 210')
         assertEqual(resp[1], 210)
+
+    def test_calcularSubTotalCarritoVacio(self):
+        carrito = []
+        resp = calcularSubTotalCarrito(carrito)
+        assertEqual(resp[0], 'No tiene libros en el carrito.')
+        assertEqual(resp[1], 0)
+
+    def test_buscarlibrosPorAutorNoResultados(self):
+        autor = "Anibal Gamboa"
+        resp = buscarLibrosPorAutor(autor)
+        assertEqual(resp[0], 'No se encontraron resultados')
