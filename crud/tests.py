@@ -73,11 +73,11 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'add_book.html')
 
     def test_delete_view(self):
-        response = self.client.get("delete/1/")
+        response = self.client.get(reverse("delete", kwargs={'id': 1}))
         self.assertEqual(response.status_code, 301)
 
     def test_edit_view(self):
-        response = self.client.get(reverse('edit'))
+        response = self.client.get(reverse('edit', kwargs={'id': 1}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit.html')
 
@@ -103,3 +103,13 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
+
+    def test_calcularSubTotalCarrito(self):
+        carrito = []
+        libros = BookList.objects.all()
+        For libro in libros:
+            carrito.append(libro)
+
+        resp = calcularSubTotalCarrito(carrito)
+        assertEqual(resp[0], 'El subtotal es: 210')
+        assertEqual(resp[1], 210)
