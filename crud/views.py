@@ -27,34 +27,25 @@ def add_book(request):
 
 
 def delete(request, id):
-    try:
-        books = BookList.objects.get(pk=id)
-        books.delete()
-    except BookList.DoesNotExist:
-        books = None
+    books = BookList.objects.get(pk=id)
+    books.delete()
     return redirect('/')
 
 
 def edit(request, id):
-    try:
-        books = BookList.objects.get(pk=id)
-        context = {
-            'books': books
-        }
-        return render(request, 'edit.html', context)
-    except BookList.DoesNotExist:
-        return render(request, 'edit.html', {})
+    books = BookList.objects.get(pk=id)
+    context = {
+        'books': books
+    }
+    return render(request, 'edit.html', context)
 
 
 def update(request, id):
-    try:
-        books = BookList.objects.get(pk=id)
-        books.title = request.GET['title']
-        books.price = request.GET['price']
-        books.author = request.GET['author']
-        books.save()
-    except BookList.DoesNotExist:
-        books = None
+    books = BookList.objects.get(pk=id)
+    books.title = request.GET['title']
+    books.price = request.GET['price']
+    books.author = request.GET['author']
+    books.save()
     return redirect('/')
 
 
@@ -80,7 +71,7 @@ def calcularSubTotalCarrito(carrito):
     if(carrito != 0):
         for libro in carrito:
             subtotal += libro.price
-        msj = 'El subtotal es: $' + str(subtotal)
+        msj = 'El subtotal es: $'+str(subtotal)
     else:
         msj = 'No tiene libros en el carrito.'
         subtotal = 0
@@ -97,4 +88,4 @@ def buscarLibrosPorAutor(nombre_autor):
     else:
         msj = 'No se encontraron resultados'
 
-    return (msj, todosLosLibros
+    return (msj, todosLosLibros)
