@@ -25,14 +25,13 @@ class BookTestCase(TestCase):
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
     def test_editar_libro(self):
-        info_libro = ["1984", 30, "George Orwell"]
+        BookList.objects.filter(title="Fire & Ice").update(price=50)
         book = BookList.objects.get("Fire & Ice")
-        book.price = 50
-        self.assertEqual(50, BookList.objects.get("Fire & Ice").price)
+        self.assertEqual(50, book.price)
 
     def test_eliminar_libro(self):
         lista_libros = len(BookList.objects.all())
-        BookList.objects.get("Fire & Ice").delete()
+        BookList.objects.filter(title="Fire & Ice").delete()
         lista_libros_actualizado = len(BookList.objects.all())
 
         self.assertEqual(lista_libros-1, lista_libros_actualizado)
@@ -54,7 +53,8 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        response = self.client.get(reverse('create'))
+        response = self.client.get('create')
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'add_book.html')
 
