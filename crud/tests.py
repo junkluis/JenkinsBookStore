@@ -5,6 +5,7 @@ from .views import *
 
 # Create your tests here.
 
+
 class BookTestCase(TestCase):
 
     def setUp(self):
@@ -26,19 +27,18 @@ class BookTestCase(TestCase):
 
     def test_editar_libro(self):
         book = BookList.objects.get(price=90)
-        book.title= "Snake"
+        book.title = "Snake"
         book.save(update_fields=["title"])
-        self.assertEqual("Snake",book.title)
+        self.assertEqual("Snake", book.title)
     
     def test_eliminar_libro(self):
         book = BookList.objects.get(title="Fire & Ice")
         book.delete()
         bookalter = BookList.objects.filter(title="Fire & Ice")
         result = False
-        if result :
+        if result:
             result = True
-        self.assertEqual(False,result)
-        
+        self.assertEqual(False, result)
 
     # def test_buscar_libro(self):
     #   pass
@@ -110,9 +110,9 @@ class FunctionsTestCase(TestCase):
 
     def test_calcular_subcarrito(self):
         books = BookList.objects.all()
-        mensajes,subt = calcularSubTotalCarrito(books)
+        mensajes, subt = calcularSubTotalCarrito(books)
         subtotal_espera = 210
-        self.assertEqual(subtotal_espera,subt)
+        self.assertEqual(subtotal_espera, subt)
 
     def test_calcular_sub_carrito_vacio_mensaje(self):
         carrito = 0
@@ -137,4 +137,3 @@ class FunctionsTestCase(TestCase):
         msj_esperado = "Se encontraron 3 resultados"
         msj, libros = buscarLibrosPorAutor('Luis Zuniga')
         self.assertEqual(msj_esperado, msj)
-        
