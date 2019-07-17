@@ -83,7 +83,7 @@ class ViewsTestCase(TestCase):
         book_update = BookList.objects.create(
                                                 title="Prueba UPDATE",
                                                 price=100,
-                                                author="Jose Masson")                                
+                                                author="Jose Masson")
         response = self.client.get(
                                     reverse('update', args=[book_update.id]),
                                     {
@@ -106,7 +106,7 @@ class ViewsTestCase(TestCase):
         book_delete = BookList.objects.create(
                                                 title="Prueba Delete",
                                                 price=100,
-                                                author="Jose Masson")                                              
+                                                author="Jose Masson")
         response = self.client.get(reverse('delete', args=[book_delete.id]))
         self.assertEqual(response.status_code, 302)
 
@@ -118,7 +118,7 @@ class ViewsTestCase(TestCase):
         new_book_edit = BookList.objects.create(
                                                 title="Prueba 2",
                                                 price=100,
-                                                author="Jose Masson")                                
+                                                author="Jose Masson")
         response = self.client.get(reverse('edit', args=[new_book_edit.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'edit.html')
