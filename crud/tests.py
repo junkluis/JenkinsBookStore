@@ -14,7 +14,6 @@ class BookTestCase(TestCase):
                                 author="Luis Zuniga")
 
     def test_crear_nuevo_libro(self):
-
         lista_libros = len(BookList.objects.all())
         info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
         BookList.objects.create(title=info_libro[0],
@@ -29,7 +28,6 @@ class BookTestCase(TestCase):
         book.title = "Snake"
         book.save(update_fields = ["title"])
         self.assertEqual("Snake", book.title)
-    #pass
 
     def test_eliminar_libro(self):
         book = BookList.objects.get(price = 90)
@@ -39,7 +37,6 @@ class BookTestCase(TestCase):
         if new_book :
             exito = True
         self.assertEqual(False, exito)
-    #   pass
 
     # def test_buscar_libro(self):
     #   pass
@@ -52,7 +49,6 @@ class ViewsTestCase(TestCase):
 
     # Prueba de una vista.
     def test_index_view(self):
-        # response = self.client.get(reverse('index', args=[self.userName]))
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
