@@ -101,8 +101,14 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
 
-    def test_calcular_sub_carrito(self):
+    def test_calcular_subtotal_carrito(self):
         libros = BookList.objects.all()
         msj, subtotal = calcularSubTotalCarrito(libros)
         subtotal_esperado = 210
         self.assertEqual(subtotal_esperado, subtotal)
+
+
+    def test_buscar_Libros(self):
+        esperado = 'No hay'
+        mensaje, todoslibros = buscarLibrosPorAutor('Cristiano Ronaldo')
+        self.assertEqual(esperado, msj)
