@@ -38,9 +38,24 @@ class BookTestCase(TestCase):
             exito = True
         self.assertEqual(False, exito)
 
-    # def test_buscar_libro(self):
-    #   pass
+    def test_buscar_libro(self):
 
+        params_busqueda = {
+            'title': "Fire & Ice",
+            'price': 90,
+            'author': "Luis Zuniga"
+        }
+        found = True
+        try:
+            book = BookList.objects.get(**params_busqueda)
+        except BookList.DoesNotExist:
+            found = False
+
+        self.assertTrue(found)
+        self.assertEqual(params_busqueda['title'], book.title)
+        self.assertEqual(params_busqueda['price'], book.price)
+        self.assertEqual(params_busqueda['author'], book.author)
+        
     # def test_libro_sin_precio(self):
     #   pass
 
