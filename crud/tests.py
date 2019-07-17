@@ -99,6 +99,15 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Err: No hay ningun libro'
         self.assertEqual(msj, msj_esperado)
 
+    def test_agregar_exceso_alcarrito(self):
+        carrito = []
+        libros = BookList.objects.all()
+
+        for i in range(11):
+            msj = agregarLibroAlCarrito(libros[3], carrito)
+        msj_esperado = "Solo puede ingresar hasta un maximo de 10 Libros al carrito"
+        self.assertEqual(msj, msj_esperado)
+
     def test_calcular_subcarrito(self):
         books = BookList.objects.all()
         mensajes,subt = calcularSubTotalCarrito(books)
