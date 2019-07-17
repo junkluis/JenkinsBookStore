@@ -4,12 +4,14 @@ from .models import BookList
 
 # Create your views here.
 
+
 def index(request):
     books = BookList.objects.all()
     context = {
         'books': books
     }
     return render(request, 'index.html', context)
+
 
 def create(request):
     title = request.GET['title']
@@ -24,26 +26,35 @@ def add_book(request):
     return render(request, 'add_book.html')
 
 
-
 def delete(request, id):
-    books = BookList.objects.get(pk=id)
-    books.delete()
+    try:
+        books = BookList.objects.get(pk=id)
+        books.delete()
+    except BookList.DoesNotExist:
+        books = None
     return redirect('/')
 
+
 def edit(request, id):
-    books = BookList.objects.get(pk=id)
-    context = {
-        'books': books
-    }
-    return render(request, 'edit.html', context)
+    try:
+        books = BookList.objects.get(pk=id)
+        context = {
+            'books': books
+        }
+        return render(request, 'edit.html', context)
+    except BookList.DoesNotExist:
+        return render(request, 'edit.html', {})
 
 
 def update(request, id):
-    books = BookList.objects.get(pk=id)
-    books.title = request.GET['title']
-    books.price = request.GET['price']
-    books.author = request.GET['author']
-    books.save()
+    try:
+        books = BookList.objects.get(pk=id)
+        books.title = request.GET['title']
+        books.price = request.GET['price']
+        books.author = request.GET['author']
+        books.save()
+    except BookList.DoesNotExist:
+        books = None
     return redirect('/')
 
 
@@ -62,7 +73,6 @@ def agregarLibroAlCarrito(libro, carrito):
     return msj
 
 
-
 def calcularSubTotalCarrito(carrito):
     msj = ""
     subtotal = 0
@@ -70,13 +80,12 @@ def calcularSubTotalCarrito(carrito):
     if(carrito != 0):
         for libro in carrito:
             subtotal += libro.price
-        msj = 'El subtotal es: $'.str(subtotal)
+        msj = 'El subtotal es: $' + str(subtotal)
     else:
         msj = 'No tiene libros en el carrito.'
         subtotal = 0
 
     return (msj, subtotal)
-
 
 
 def buscarLibrosPorAutor(nombre_autor):
@@ -88,4 +97,4 @@ def buscarLibrosPorAutor(nombre_autor):
     else:
         msj = 'No se encontraron resultados'
 
-    return (msj, todosLosLibros)
+    return (msj, todosLosLibros
