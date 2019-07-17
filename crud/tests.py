@@ -63,10 +63,13 @@ class ViewsTestCase(TestCase):
     #   pass
 
     def test_edit_view(self):
-        response = self.client.get(reverse('edit', kwargs={'id': 1}))
+        info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
+        BookList.objects.create(title=info_libro[0],
+                                price=info_libro[1],
+                                author=info_libro[2])
+        response = self.client.get(reverse("edit", args=(1,)))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'edit.html')
-
+        
 class FunctionsTestCase(TestCase):
 
     def setUp(self):
