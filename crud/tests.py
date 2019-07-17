@@ -82,7 +82,8 @@ class ViewsTestCase(TestCase):
 
     def test_update_view(self):
         form_data = {"title": "1984", "price": 20, "author": "George Orwell"}
-        response = self.client.get(reverse("delete", kwargs={'id': 1}), form_data)
+        response = self.client.get(
+            reverse("update", kwargs={'id': 1}), form_data)
         self.assertEqual(response.status_code, 302)
 
     def test_edit_view(self):
@@ -120,7 +121,8 @@ class FunctionsTestCase(TestCase):
         for i in range(10):
             agregarLibroAlCarrito(libros[0], carrito)
         msj = agregarLibroAlCarrito(libros[0], carrito)
-        msj_esperado = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
+        msj_esperado = 'Solo puede ingresar \
+            hasta un maximo de 10 Libros al carrito'
         self.assertEqual(msj_esperado, msj)
 
     def test_agregar_carrito_no_libro(self):
