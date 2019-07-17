@@ -26,7 +26,7 @@ class BookTestCase(TestCase):
 
     def test_editar_libro(self):
 
-        book.title = "Festin de Cuervos"
+        book.title = "Fire & Ice"
         book.save(update_fields=["title"])
         self.assertEqual("Festin de Cuervos", book.title)
 
@@ -42,7 +42,7 @@ class BookTestCase(TestCase):
 
     def test_buscar_libro(self):
         mensaje = 'No hay'
-        mensaj2, todoslibros = test_buscar_libro('Festin de Cuervos')
+        mensaj2, todoslibros = test_buscar_libro('Fire & Ice')
         self.assertEqual(mensaje, mensaje2)
 
 
