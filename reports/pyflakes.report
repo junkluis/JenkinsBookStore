@@ -1,0 +1,17 @@
+..\..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:1: [E] PYFLAKES:'from django.contrib.messages.api import *' used; unable to detect undefined names
+..\..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:1: [E] PYFLAKES:'django.contrib.messages.api.*' imported but unused
+..\..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:2: [E] PYFLAKES:'from django.contrib.messages.constants import *' used; unable to detect undefined names
+..\..\..\..\..\..\..\AppData\Local\Programs\Python\Python37\lib\site-packages\django\contrib\messages\__init__.py:2: [E] PYFLAKES:'django.contrib.messages.constants.*' imported but unused
+crud\tests.py:4: [E] PYFLAKES:'from .views import *' used; unable to detect undefined names
+crud\tests.py:104: [E] PYFLAKES:local variable 'libro_prueba' is assigned to but never used
+crud\tests.py:112: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:122: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:130: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:137: [E] PYFLAKES:'agregarLibroAlCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:138: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:145: [E] PYFLAKES:'calcularSubTotalCarrito' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:150: [E] PYFLAKES:local variable 'msj' is assigned to but never used
+crud\tests.py:151: [E] PYFLAKES:'buscarLibrosPorAutor' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\tests.py:156: [E] PYFLAKES:local variable 'msj' is assigned to but never used
+crud\tests.py:157: [E] PYFLAKES:'buscarLibrosPorAutor' may be undefined, or defined from star imports: [E] PYFLAKES:.views
+crud\views.py:1: [E] PYFLAKES:'django.shortcuts.HttpResponse' imported but unused
