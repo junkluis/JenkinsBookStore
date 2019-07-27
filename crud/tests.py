@@ -23,6 +23,13 @@ class BookTestCase(TestCase):
 
         self.assertEqual(cantidad_anterior_libros+1, cantidad_libros_actual)
 
+    def test_add_book(self):
+        cambios = False
+        add_book(None)
+
+        self.assertEqual(False, cambios)
+
+
     def test_editar_libro(self):         
         libro_a_editar = BookList.objects.last()
         edit(None, 1)
