@@ -724,14 +724,7 @@ crud\tests.py:26:33: W291 trailing whitespace
 crud\tests.py:30:1: W293 blank line contains whitespace
 crud\tests.py:31:9: E303 too many blank lines (2)
 crud\tests.py:36:5: E303 too many blank lines (2)
-crud\tests.py:38:44: E251 unexpected spaces around keyword / parameter equals
-crud\tests.py:38:46: E251 unexpected spaces around keyword / parameter equals
-crud\tests.py:40:80: E501 line too long (81 > 79 characters)
-crud\tests.py:40:65: E251 unexpected spaces around keyword / parameter equals
-crud\tests.py:40:67: E251 unexpected spaces around keyword / parameter equals
-crud\tests.py:43:1: W293 blank line contains whitespace
-crud\tests.py:45:1: W293 blank line contains whitespace
-crud\tests.py:47:5: E303 too many blank lines (2)
+crud\tests.py:44:1: W293 blank line contains whitespace
 crud\tests.py:56:33: E128 continuation line under-indented for visual indent
 crud\tests.py:57:33: E128 continuation line under-indented for visual indent
 crud\tests.py:59:47: W291 trailing whitespace

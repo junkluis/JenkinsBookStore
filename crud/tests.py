@@ -34,15 +34,15 @@ class BookTestCase(TestCase):
 
 
     def test_eliminar_libro(self):
+        libro_a_eliminar = BookList.objects.get(pk=1)
+        delete("", 1)
         confirmacion = False
-        libro = BookList.objects.get(author = "Luis Zuniga")
-        libro.delete()
-        confirmar_libro_borrado = BookList.objects.filter(author = "Luis Zuniga")
-        if confirmar_libro_borrado:
+        libro_a_eliminar.delete()
+        print(libro_a_eliminar)
+        if libro_a_eliminar is None:
             confirmacion = True
         
         self.assertEqual(confirmacion, False)
-       
 
     def test_buscar_libro(self):
         libro_buscado = BookList.objects.first()
