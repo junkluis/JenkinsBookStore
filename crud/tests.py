@@ -54,11 +54,21 @@ class BookTestCase(TestCase):
         self.assertEqual(cantidad_libros_esperada, BookList.objects.all().count())
 
     def test_buscar_libro(self):
-        libro_buscado = BookList.objects.first()
-        campos_esperados = ["Fire & Ice", 90, "Luis Zuniga"]
-        self.assertEqual(campos_esperados[0], libro_buscado.title)
-        self.assertEqual(campos_esperados[1], libro_buscado.price)
-        self.assertEqual(campos_esperados[2], libro_buscado.author)
+        parametros_busqueda = {
+            'title': "Fire & Ice",
+            'price': 90,
+            'author': "Luis Zuniga"
+        }
+        found = True
+        try:
+            libro = BookList.objects.get(**parametros_busqueda)
+        except BookList.DoesNotExist:
+            found = False
+
+        self.assertTrue(found)
+        self.assertEqual(parametros_busqueda['title'], libro.title)
+        self.assertEqual(parametros_busqueda['price'], libro.price)
+        self.assertEqual(parametros_busqueda['author'], libro.author)
 
     def test_libro_sin_precio(self):
         libro_nuevo = BookList.objects.create(title="Las manzanas",
@@ -93,8 +103,14 @@ class ViewsTestCase(TestCase):
         self.assertEqual(respuesta.status_code, 301)
 
     def test_edit_view(self):
-        respuesta = self.client.get("/edit/1")
-        self.assertEqual(respuesta.status_code, 301)
+        libro_a_editar = BookList.objects.create(title="Fire & Ice",
+                                               price=90,
+                                               author="Luis Zuniga")
+        respuesta = self.client.get(reverse('edit', args=[libro_a_editar.id]))
+
+        self.assertEqual(respuesta.status_code, 200)
+        self.assertTemplateUsed(respuesta, 'edit.html')
+        self.assertEqual(libro_a_editar, respuesta.context['books'])
 
     def test_update_view(self):
         respuesta = self.client.get("/update/1")
@@ -125,7 +141,7 @@ class FunctionsTestCase(TestCase):
     def test_agregar_libro_a_carrito_lleno(self):  
         carrito = []      
         libros = BookList.objects.all()
-        for i in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
+        for i in range(12):
             carrito.append(BookList.objects.first())
 
         msj = agregarLibroAlCarrito(libros[0], carrito)
@@ -145,7 +161,6 @@ class FunctionsTestCase(TestCase):
         libro = BookList.objects.first()
         agregarLibroAlCarrito(libro, carrito)
         res,valor = calcularSubTotalCarrito(carrito)
-        print('El subtotal es: $90')
         self.assertEqual(msj_esperado, res)
 
     def test_calcular_subtotal_carrito_vacio(self):
