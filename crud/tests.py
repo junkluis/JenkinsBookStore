@@ -23,14 +23,11 @@ class BookTestCase(TestCase):
 
         self.assertEqual(cantidad_anterior_libros+1, cantidad_libros_actual)
 
-    def test_editar_libro(self): 
-        libro_a_editar = BookList.objects.first()
-        nuevo_precio = 100
-
-        
-        libro_a_editar.price = nuevo_precio
-
-        self.assertEqual(100, libro_a_editar.price)
+    def test_editar_libro(self):         
+        libro_a_editar = BookList.objects.last()
+        edit(None, 1)
+ 
+        self.assertEqual(90, libro_a_editar.price)
 
 
     def test_eliminar_libro(self):
