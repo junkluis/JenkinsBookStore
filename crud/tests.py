@@ -31,10 +31,17 @@ class BookTestCase(TestCase):
 
 
     def test_editar_libro(self):         
-        libro_a_editar = BookList.objects.last()
-        edit(None, 1)
- 
-        self.assertEqual(90, libro_a_editar.price)
+        update_fields = ['title', 'price']
+        update_data = ['Earth II', 200]
+
+        book = BookList.objects.first()
+        book.title = 'Earth II'
+        book.price = 200
+        book.save(update_fields=update_fields)
+
+        book = BookList.objects.first()
+        self.assertEqual(update_data[0], book.title)
+        self.assertEqual(update_data[1], book.price)
 
 
     def test_eliminar_libro(self):
