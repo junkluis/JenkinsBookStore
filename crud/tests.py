@@ -14,7 +14,6 @@ class BookTestCase(TestCase):
                                 price=90,
                                 author="Luis Zuniga")
 
-
     def test_crear_nuevo_libro(self):
         lista_libros = len(BookList.objects.all())
         info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
@@ -32,7 +31,7 @@ class BookTestCase(TestCase):
             expected = True
         except AssertionError:
             expected = False
-    	
+
         self.assertEqual(expected, True)
 
     def test_eliminar_libro(self):

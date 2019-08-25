@@ -12,6 +12,7 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
 def create(request):
     title = request.GET['title']
     price = request.GET['price']
@@ -20,13 +21,16 @@ def create(request):
     book_details.save()
     return redirect('/')
 
+
 def add_book(request):
     return render(request, 'add_book.html')
+
 
 def delete(request, id):
     books = BookList.objects.get(pk=id)
     books.delete()
     return redirect('/')
+
 
 def edit(request, id):
     books = BookList.objects.get(pk=id)
@@ -35,6 +39,7 @@ def edit(request, id):
     }
     return render(request, 'edit.html', context)
 
+
 def update(request, id):
     books = BookList.objects.get(pk=id)
     books.title = request.GET['title']
@@ -42,6 +47,7 @@ def update(request, id):
     books.author = request.GET['author']
     books.save()
     return redirect('/')
+
 
 def agregarLibroAlCarrito(libro, carrito):
     msj = ''
@@ -57,6 +63,7 @@ def agregarLibroAlCarrito(libro, carrito):
 
     return msj
 
+
 def calcularSubTotalCarrito(carrito):
     msj = ""
     subtotal = 0
@@ -70,6 +77,7 @@ def calcularSubTotalCarrito(carrito):
         subtotal = 0
 
     return (msj, subtotal)
+
 
 def buscarLibrosPorAutor(nombre_autor):
     msj = ""
