@@ -24,8 +24,15 @@ class BookTestCase(TestCase):
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
 
-    # def test_editar_libro(self):
-    #   pass
+    def test_editar_libro(self):
+        expected = False
+        try:
+            edit(None, 1)
+            expected = True
+        except AssertionError:
+            expected = False
+    	
+        self.assertEqual(expected, True)
 
     # def test_eliminar_libro(self):
     #   pass
