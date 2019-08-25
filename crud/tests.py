@@ -48,7 +48,7 @@ class BookTestCase(TestCase):
         expected_msj = 'Se encontraron 1 resultados'
         msj, books = buscarLibrosPorAutor("Luis Zuniga")
 
-        self.assertEqual(msj, expected_msj) 
+        self.assertEqual(msj, expected_msj)
 
     def test_libro_sin_precio(self):
         expected_msj = 'No se encontraron resultados'
