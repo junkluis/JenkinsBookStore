@@ -82,7 +82,8 @@ class ViewsTestCase(TestCase):
 
     def test_delete_view(self):
         book = BookList.objects.create(title="La navidad",
-                                        price=100, author="Wellington Martinez")
+                                       price=100,
+                                       author="Wellington Martinez")
         response = self.client.get(reverse('delete', args=[book.id]))
 
         self.assertEqual(response.status_code, 302)
