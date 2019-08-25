@@ -54,7 +54,7 @@ class BookTestCase(TestCase):
         expected_msj = 'No se encontraron resultados'
         msj, books = buscarLibrosPorAutor("Wellington Martinez")
 
-        self.assertEqual(msj, expected_msj)    
+        self.assertEqual(msj, expected_msj)
 
 
 class ViewsTestCase(TestCase):
@@ -130,7 +130,7 @@ class FunctionsTestCase(TestCase):
         expected_msj = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
         for i in range(15):
             msj = agregarLibroAlCarrito(book, car)
-        
+
         self.assertEqual(msj, expected_msj)
 
     def test_agregar_carrito_no_libro(self):
