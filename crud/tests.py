@@ -89,20 +89,23 @@ class ViewsTestCase(TestCase):
 
     def test_edit_view(self):
         book = BookList.objects.create(title="La navidad",
-                                        price=100, author="Wellington Martinez")
+                                       price=100,
+                                       author="Wellington Martinez")
         response = self.client.get(reverse('edit', args=[book.id]))
 
         self.assertEqual(200, response.status_code)
 
     def test_update_view(self):
         book = BookList.objects.create(title="La navidad",
-                                        price=100, author="Wellington Martinez")
+                                       price=100,
+                                       author="Wellington Martinez")
         edit_data = {
             "title": book.title,
             "price": 180,
             "author": book.author
         }
-        response = self.client.get(reverse('update', args=[book.id]), edit_data)
+        response = self.client.get(reverse('update',
+                                           args=[book.id]), edit_data)
 
         self.assertEqual(response.status_code, 302)
 
@@ -128,11 +131,12 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(libros[0], carrito)
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
-    
+
     def test_agregar_carrito_exceso(self):
         car = []
         book = BookList.objects.first()
-        expected_msj = 'Solo puede ingresar hasta un maximo de 10 Libros al carrito'
+        expected_msj = 'Solo puede ingresar hasta un maximo de 10' +
+                       'Libros al carrito'
         for i in range(15):
             msj = agregarLibroAlCarrito(book, car)
 
