@@ -136,7 +136,7 @@ class FunctionsTestCase(TestCase):
         car = []
         book = BookList.objects.first()
         expected_msj = 'Solo puede ingresar hasta un maximo de 10'
-                       .'Libros al carrito'
+            .'Libros al carrito'
         for i in range(15):
             msj = agregarLibroAlCarrito(book, car)
 
