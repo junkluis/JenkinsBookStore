@@ -136,7 +136,7 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito_exceso(self):
         car = []
         book = BookList.objects.first()
-        x = 'Solo puede ingresar hasta un maximo de 10 Libros' + 
+        x = 'Solo puede ingresar hasta un maximo de 10 Libros' +  
             ' al carrito'
         for i in range(15):
             msj = agregarLibroAlCarrito(book, car)
