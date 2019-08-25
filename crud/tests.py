@@ -13,8 +13,8 @@ class BookTestCase(TestCase):
                                 price=90,
                                 author="Luis Zuniga")
 
-    def test_crear_nuevo_libro(self):
 
+    def test_crear_nuevo_libro(self):
         lista_libros = len(BookList.objects.all())
         info_libro = ["Festin de Cuervos", 40, "Luis Zuniga"]
         BookList.objects.create(title=info_libro[0],
@@ -23,6 +23,7 @@ class BookTestCase(TestCase):
         lista_libros_actualizado = len(BookList.objects.all())
 
         self.assertEqual(lista_libros+1, lista_libros_actualizado)
+
 
     def test_editar_libro(self):
         expected = False
@@ -34,6 +35,7 @@ class BookTestCase(TestCase):
     	
         self.assertEqual(expected, True)
 
+
     def test_eliminar_libro(self):
         expected = False
         try:
@@ -44,17 +46,20 @@ class BookTestCase(TestCase):
 
         self.assertEqual(expected, True)
 
+
     def test_buscar_libro(self):
         expected_msj = 'Se encontraron 1 resultados'
         msj, books = buscarLibrosPorAutor("Luis Zuniga")
 
         self.assertEqual(msj, expected_msj) 
 
+
     def test_libro_sin_precio(self):
         expected_msj = 'No se encontraron resultados'
         msj, books = buscarLibrosPorAutor("Wellington Martinez")
 
         self.assertEqual(msj, expected_msj)    
+
 
 class ViewsTestCase(TestCase):
 
@@ -65,17 +70,20 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
 
+
     def test_create_view(self):
         book = {"title":"Im stronger", "author":"Wellington Martinez", "price":100}
         response = self.client.get('/create', book)
 
         self.assertEqual(301, response.status_code)
         
+
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
 
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, 'add_book.html')
+
 
     def test_delete_view(self):
         book = BookList.objects.create(title="La navidad", price=100, author="Wellington Martinez")
@@ -83,11 +91,13 @@ class ViewsTestCase(TestCase):
 
         self.assertEqual(response.status_code, 302)
 
+
     def test_edit_view(self):
         book = BookList.objects.create(title="La navidad", price=100, author="Wellington Martinez")
         response = self.client.get(reverse('edit', args=[book.id]))
 
         self.assertEqual(200, response.status_code)
+
 
     def test_update_view(self):
         book = BookList.objects.create(title="La navidad", price=100, author="Wellington Martinez")
@@ -115,6 +125,7 @@ class FunctionsTestCase(TestCase):
                                                price=40,
                                                author="Luis Zuniga")
 
+
     # Prueba de una vista.
     def test_agregar_carrito(self):
         carrito = []
@@ -123,6 +134,7 @@ class FunctionsTestCase(TestCase):
         msj_esperado = 'Libro: Fire & Ice fue agregado al carrito'
         self.assertEqual(msj_esperado, msj)
     
+
     def test_agregar_carrito_exceso(self):
         car = []
         book = BookList.objects.first()
@@ -132,6 +144,7 @@ class FunctionsTestCase(TestCase):
         
         self.assertEqual(msj, expected_msj)
 
+
     def test_agregar_carrito_no_libro(self):
         car = []
         book = 0
@@ -139,6 +152,7 @@ class FunctionsTestCase(TestCase):
         msj = agregarLibroAlCarrito(book, car)
 
         self.assertEqual(msj, expected_msj)
+
 
     def test_calcular_subtotal_carrito(self):
         expected_msj = 'El subtotal es: $130'
@@ -148,6 +162,7 @@ class FunctionsTestCase(TestCase):
         msj, subtotal = calcularSubTotalCarrito(car)
 
         self.assertEqual(expected_msj, msj)
+
 
     def test_calcular_subtotal_carrito_vacio(self):
         expected_msj = 'No tiene libros en el carrito.'
