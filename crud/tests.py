@@ -67,13 +67,13 @@ class ViewsTestCase(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_create_view(self):
-        book = {"title":"Im stronger",
-                "author":"Wellington Martinez",
-                "price":100}
+        book = {"title": "Im stronger",
+                "author": "Wellington Martinez",
+                "price": 100}
         response = self.client.get('/create', book)
 
         self.assertEqual(301, response.status_code)
-        
+
     def test_add_view(self):
         response = self.client.get(reverse('add_book'))
 
@@ -82,21 +82,21 @@ class ViewsTestCase(TestCase):
 
     def test_delete_view(self):
         book = BookList.objects.create(title="La navidad",
-            price=100, author="Wellington Martinez")
+                                        price=100, author="Wellington Martinez")
         response = self.client.get(reverse('delete', args=[book.id]))
 
         self.assertEqual(response.status_code, 302)
 
     def test_edit_view(self):
         book = BookList.objects.create(title="La navidad",
-            price=100, author="Wellington Martinez")
+                                        price=100, author="Wellington Martinez")
         response = self.client.get(reverse('edit', args=[book.id]))
 
         self.assertEqual(200, response.status_code)
 
     def test_update_view(self):
         book = BookList.objects.create(title="La navidad",
-            price=100, author="Wellington Martinez")
+                                        price=100, author="Wellington Martinez")
         edit_data = {
             "title": book.title,
             "price": 180,
