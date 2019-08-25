@@ -136,12 +136,13 @@ class FunctionsTestCase(TestCase):
     def test_agregar_carrito_exceso(self):
         car = []
         book = BookList.objects.first()
-        x = 'Solo puede ingresar hasta un maximo de 10 Libros' +  
-            ' al carrito'
+        s1 = 'Solo puede ingresar hasta un maximo de 10 Libros'
+        s2 = ' al carrito'
+        expected_msj = s1 + s2
         for i in range(15):
             msj = agregarLibroAlCarrito(book, car)
 
-        self.assertEqual(msj, x)
+        self.assertEqual(msj, expected_msj)
 
     def test_agregar_carrito_no_libro(self):
         car = []
